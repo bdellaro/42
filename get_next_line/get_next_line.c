@@ -87,5 +87,6 @@ int	main(void)
 		printf("%s", str);
 		free(str);
 	}
+	close(fd);
 	return (0);
 }*/
