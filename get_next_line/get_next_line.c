@@ -13,7 +13,7 @@
 
 int	ft_next(char *str)
 {
-	int		i;
+	size_t	i;
 
 	if (!str)
 		return (0);
@@ -24,59 +24,74 @@ int	ft_next(char *str)
 	return (0);
 }
 
-char	*ft_print_line(char **temp)
+char	*ft_print_line(char **str)
 {
-	int		i;
+	size_t	i;
 	char	*line;
-	char	*str;
+	char	*temp;
 
-	if (!*temp)
+	if (!*str)
 		return (NULL);
-	str = *temp;
+	temp = *str;
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (temp[i] && temp[i] != '\n')
 		i++;
-	if (str[i] == '\n')
+	if (temp[i] == '\n')
 		i++;
-	line = ft_strndup(str, i);
-	*temp = ft_strndup(str + i, ft_strlen(str + i));
-	if (str)
-		free(str);
-	str = NULL;
+	line = ft_strndup(temp, i);
+	*str = ft_strndup(temp + i, ft_strlen(temp + i));
+	free(temp);
+	temp = NULL;
 	return (line);
+}
+
+void	*ft_free(char **str, char **buffer)
+{
+	if (*str)
+	{
+		free(*str);
+		*str = NULL;
+	}
+	if (*buffer)
+	{
+		free(*buffer);
+		*buffer = NULL;
+	}
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*str;
-	char			*buffer;
-	int				n_read;
+	static char	*str;
+	char		*buffer;
+	int			n_read;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (free(str), str = NULL, NULL);
-	if (ft_next(str))
-		return (ft_print_line(&str));
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	n_read = 1;
-	while (n_read > 0)
+	if (!ft_next(str))
 	{
-		n_read = read(fd, buffer, BUFFER_SIZE);
-		buffer[n_read] = 0;
-		str = ft_strjoin(str, buffer);
-		if (ft_next(str))
-			break ;
+		n_read = 1;
+		while (n_read > 0)
+		{
+			n_read = read(fd, buffer, BUFFER_SIZE);
+			if (n_read < 0)
+				return (ft_free(&str, &buffer));
+			buffer[n_read] = '\0';
+			str = ft_strjoin(str, buffer);
+			if (ft_next(str))
+				break ;
+		}
 	}
-	if (buffer)
-		free(buffer);
-	buffer = NULL;
+	free(buffer);
 	return (ft_print_line(&str));
 }
 /*
 int	main(void)
 {
-	int fd = open("../File_descriptor", O_RDONLY);
+	int fd = open("../File_descriptori.txt", O_RDONLY);
 	char	*str;
 	
 	while (1)
