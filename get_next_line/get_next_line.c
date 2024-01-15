@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:26:54 by bdellaro          #+#    #+#             */
-/*   Updated: 2023/12/27 16:41:24 by bdellaro         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:27:07 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -62,7 +62,7 @@ void	*ft_free(char **str, char **buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str = NULL;
 	char		*buffer;
 	int			n_read;
 
@@ -88,10 +88,10 @@ char	*get_next_line(int fd)
 	free(buffer);
 	return (ft_print_line(&str));
 }
-
+/*
 int	main(void)
 {
-	int fd = open("../File_descriptor.txt", O_RDONLY);
+	int fd = open("../File_descriptori.txt", O_RDONLY);
 	char	*str;
 	
 	while (1)
@@ -104,4 +104,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}
+}*/

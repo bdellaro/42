@@ -6,19 +6,19 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 12:29:10 by bdellaro          #+#    #+#              #
-#    Updated: 2023/12/22 09:46:13 by bdellaro         ###   ########.fr        #
+#    Updated: 2023/11/07 10:50:12 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		libftprintf.a
 
 SRCS =		ft_printf.c		\
-		./ft_printf/ft_print_nbr.c		\
-		./ft_printf/ft_print_str.c		\
-		./ft_printf/ft_print_char.c		\
-		./ft_printf/ft_print_ptr.c		\
-		./ft_printf/ft_print_unsigned.c	\
-		./ft_printf/ft_print_hexa.c		\
-		./ft_printf/ft_print_percent.c	\
+		./srcs/ft_print_nbr.c		\
+		./srcs/ft_print_str.c		\
+		./srcs/ft_print_char.c		\
+		./srcs/ft_print_ptr.c		\
+		./srcs/ft_print_unsigned.c	\
+		./srcs/ft_print_hexa.c		\
+		./srcs/ft_print_percent.c	\
 
 OBJS =		$(SRCS:.c=.o)
 
