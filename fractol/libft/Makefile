@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:39:37 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/12 16:02:46 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/01/16 18:21:14 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		libft.a
@@ -47,13 +47,15 @@ SRC =		ft_atoi.c	\
 		ft_itoa.c	\
 		ft_split.c	\
 		ft_printf/ft_print_char.c	\
-		ft_printf/ft_printf.c	\
+		ft_printf/ft_printf.c		\
 		ft_printf/ft_print_hexa.c	\
 		ft_printf/ft_print_nbr.c	\
 		ft_printf/ft_print_percent.c	\
 		ft_printf/ft_print_ptr.c	\
 		ft_printf/ft_print_str.c	\
 		ft_printf/ft_print_unsigned.c	\
+		get_next_line/get_next_line.c	\
+		get_next_line/get_next_line_utils.c	\
 
 OBJS =		$(SRC:.c=.o)
 
