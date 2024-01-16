@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 14:34:00 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/12 16:52:47 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/01/16 17:05:04 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		fractol
@@ -28,7 +28,7 @@ RM = 		rm -f
 all:		$(NAME)
 
 $(NAME): 	$(OBJS)
-		cd minilibx-linux;./configure
+		cd minilibx-linux;make
 		cd libft;make
 		${RM} Makefile.gen
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LIB}

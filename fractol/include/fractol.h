@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:24:33 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/01/12 17:14:11 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:05:33 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -34,9 +34,8 @@ typedef struct s_mlx_data
 
 }		t_mlx_data;
 
-int		ft_hook(int e);
 int		ft_init(char *fract);
-int		ft_mlx_error(t_mlx_data *mlx_data);
-void	ft_mlx_free(t_mlx_data *mlx_data);
+int		ft_mlx_error(t_mlx_data *data);
+void	ft_mlx_free(t_mlx_data *data);
 
 #endif

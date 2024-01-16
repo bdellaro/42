@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/16 14:47:50 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/01/16 15:03:02 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "fractol.h"
 
-int	ft_mlx_error(t_mlx_data *mlx_data)
+int	ft_mlx_error(t_mlx_data *data)
 {
-	mlx_destroy_display(mlx_data->mlx_ptr);
-	free(mlx_data->win_ptr);
-	free(mlx_data->mlx_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->win_ptr);
+	free(data->mlx_ptr);
 	ft_printf("Error : no window created\n");
 	return (MLX_ERROR);
 }
 
-void	ft_mlx_free(t_mlx_data *mlx_data)
+void	ft_mlx_free(t_mlx_data *data)
 {
-	mlx_destroy_window(mlx_data->mlx_ptr, mlx_data->win_ptr);
-	mlx_destroy_display(mlx_data->mlx_ptr);
-	free(mlx_data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 }
