@@ -36,7 +36,7 @@ typedef struct s_mlx_data
 
 int		ft_hook(int e);
 int		ft_init(char *fract);
-int		ft_mlx_error(void *mlx_ptr, void *win_ptr);
-void	ft_mlx_free(void *mlx_ptr, void *win_ptr);
+int		ft_mlx_error(t_mlx_data *mlx_data);
+void	ft_mlx_free(t_mlx_data *mlx_data);
 
 #endif
