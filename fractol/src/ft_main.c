@@ -13,29 +13,38 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc == 1 || argc > 4)// || (ft_strncmp(argv[1], "julia", 5) != 0)
-	//	|| (ft_strncmp(argv[1], "mandelbrot", 10) != 0))
+	t_fractal	fractal;
+
+	if ((argc == 2 && !ft_strncmp(argv[1], "mandelbrot", 10) 
+			&& ft_strncmp(argv[1], "mandelbrot", 11) == 0)
+				|| (argc > 1 && !ft_strncmp(argv[1], "julia",
+					5) && ft_strncmp(argv[1], "julia", 11) == 0 ))
 	{
-			ft_printf("Invalid argument(s).\n");
-			ft_printf("Please enter :\n\n===> mandelbrot\nOr\n");
-			ft_printf("===> julia [value 1] [value 2]\n");
+		fractal.name = argv[1];
+		if (!ft_strncmp(argv[1], "mandelbrot", 10))
+		{
+			ft_printf("===> Mandelbroot fractal chosen.\n");
+			ft_fractal_init(&fractal);
+			fractal_render(&fractal);
+			mlx_loop(fractal.mlx_ptr);
+		}
+		if (!ft_strncmp(argv[1], "julia", 5) && argc == 2)
+			ft_printf("Enter two values for Julia fractal\n");
+		if (!ft_strncmp(argv[1], "julia", 5) && argc == 3)
+			ft_printf("Missing one argument for Julia fractal\n");
+		if (!ft_strncmp(argv[1], "julia", 5) && argc > 4)
+			ft_printf("Too few arguments for Julia fractal\n");
+		if (!ft_strncmp(argv[1], "julia", 5) && argc == 4)
+		{	
+			ft_printf("===> Julia fractal chosen.\n");
+			ft_fractal_init(&fractal);
+		}
 	}
 	else
 	{
-		if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
-		{
-			ft_printf("\n===> Mandelbroot fractal chosen.\n");
-			ft_init("Mandelbrot fract-ol");
-		}
-		if (ft_strncmp(argv[1], "julia", 5) == 0 && argc == 3)
-			ft_printf("Missing one argument for Julia fractal\n");
-		if (ft_strncmp(argv[1], "julia", 5) == 0 && argc > 4)
-			ft_printf("Too few arguments for Julia fractal\n");
-		if (ft_strncmp(argv[1], "julia", 5) == 0 && argc == 4)
-		{	
-			ft_printf("\n===> Julia fractal chosen.\n");
-			ft_init("Julia fract-ol");
-		}
+			ft_printf("Invalid argument(s).\n");
+			ft_printf("Please enter :\n      ===> mandelbrot\n   Or\n");
+			ft_printf("      ===> julia [value 1] [value 2]\n");
 	}
 	return (0);
 }
