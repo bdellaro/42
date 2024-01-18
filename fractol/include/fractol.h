@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:24:33 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/01/16 15:05:33 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:13:08 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -19,6 +19,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+//# include <keysymdef.h>
 
 # define WIDTH 1200
 # define HEIGHT 800
@@ -34,14 +37,14 @@
 #define GREEN       0x00FF00  // RGB(0, 255, 0)
 #define BLUE        0x0000FF  // RGB(0, 0, 255)
 
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-#define LIME_SHOCK      0xCCFF00  // A blinding lime
-#define NEON_ORANGE     0xFF6600  // A blazing neon orange
-#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define HOT_PINK        0xFF66B2  // As the name suggests!
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define LAVA_RED        0xFF3300  // A bright, molten red
+#define MAGENTA_BURST   0xFF00FF  
+#define LIME_SHOCK      0xCCFF00  
+#define NEON_ORANGE     0xFF6600  
+#define PSYCHEDELIC_PURPLE 0x660066  
+#define AQUA_DREAM      0x33CCCC  
+#define HOT_PINK        0xFF66B2 
+#define ELECTRIC_BLUE   0x0066FF 
+#define LAVA_RED        0xFF3300 
 
 typedef struct	s_complex
 {
@@ -63,17 +66,12 @@ typedef struct	s_fractal
 	char	*name;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
-	double	escaped_value;
-	int	iteration_definition;
+//	t_img	img;
+//	double	escaped_value;
+//	int	iteration_definition;
 }			t_fractal;
 
-void    fractal_render(t_fractal *fractal);
-void	data_init(t_fractal *fractal);
-t_complex	sum_complex(t_complex z1, t_complex z2);
-t_complex	square_complex(t_complex z);
-double	ft_map(double unscaled_num, double new_min, double new_max, 
-double old_min, double old_max);
+void	ft_arguments_check(int argc, char **argv);
 //static void	malloc_error();
 void	ft_fractal_init(t_fractal *fractal);
 //int		ft_init(char *fract);

@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 14:34:00 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/16 17:05:04 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/01/18 14:38:25 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		fractol
@@ -14,8 +14,6 @@ NAME =		fractol
 SRCS =		src/ft_main.c		\
 		src/ft_init.c		\
 		src/ft_utils.c		\
-		src/ft_render.c		\
-		src/ft_math.c		\
 
 OBJS =		$(SRCS:.c=.o)
 
