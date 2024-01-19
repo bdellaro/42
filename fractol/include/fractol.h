@@ -27,33 +27,32 @@
 
 # define MLX_ERROR -1
 
-# define MANDERBROT 1
-# define JULIA 2
+# define BLACK       0x000000  // RGB(0, 0, 0)
+# define WHITE       0xFFFFFF  // RGB(255, 255, 255)
+# define RED         0xFF0000  // RGB(255, 0, 0)
+# define GREEN       0x00FF00  // RGB(0, 255, 0)
+# define BLUE        0x0000FF  // RGB(0, 0, 255)
 
-#define BLACK       0x000000  // RGB(0, 0, 0)
-#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
-#define RED         0xFF0000  // RGB(255, 0, 0)
-#define GREEN       0x00FF00  // RGB(0, 255, 0)
-#define BLUE        0x0000FF  // RGB(0, 0, 255)
-
-#define MAGENTA_BURST   0xFF00FF  
-#define LIME_SHOCK      0xCCFF00  
-#define NEON_ORANGE     0xFF6600  
-#define PSYCHEDELIC_PURPLE 0x660066  
-#define AQUA_DREAM      0x33CCCC  
-#define HOT_PINK        0xFF66B2 
-#define ELECTRIC_BLUE   0x0066FF 
-#define LAVA_RED        0xFF3300 
+# define MAGENTA_BURST   0xFF00FF  
+# define LIME_SHOCK      0xCCFF00  
+# define NEON_ORANGE     0xFF6600  
+# define PSYCHEDELIC_PURPLE 0x660066  
+# define AQUA_DREAM      0x33CCCC  
+# define HOT_PINK        0xFF66B2 
+# define ELECTRIC_BLUE   0x0066FF 
+# define LAVA_RED        0xFF3300 
 
 typedef struct	s_fractal
 {
-	char	*key_pressed;
-	char	*name;
+	char		*key_pressed;
+	char		*name;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	int	color;
+	int			color;
 }			t_fractal;
 
+int		ft_string(t_fractal *fractal);
+int		ft_handle_input(int keysym, t_fractal *fractal);
 void	ft_arguments_check(int argc, char **argv);
 void	ft_fractal_init(t_fractal *fractal);
 

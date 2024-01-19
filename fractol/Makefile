@@ -14,6 +14,7 @@ NAME =		fractol
 SRCS =		src/ft_main.c		\
 		src/ft_init.c		\
 		src/ft_utils.c		\
+		src/ft_events.c		\
 
 OBJS =		$(SRCS:.c=.o)
 
