@@ -21,7 +21,6 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-//# include <keysymdef.h>
 
 # define WIDTH 1200
 # define HEIGHT 800
@@ -46,36 +45,16 @@
 #define ELECTRIC_BLUE   0x0066FF 
 #define LAVA_RED        0xFF3300 
 
-typedef struct	s_complex
-{
-	double	x;
-	double	y;
-}			t_complex;
-
-typedef struct	s_img
-{
-	void	*img_ptr;
-	char	*pixel_ptr;
-	int		bpp;
-	int		endian;
-	int		line_len;
-}				t_img;
-
 typedef struct	s_fractal
 {
+	char	*key_pressed;
 	char	*name;
 	void	*mlx_ptr;
 	void	*win_ptr;
-//	t_img	img;
-//	double	escaped_value;
-//	int	iteration_definition;
+	int	color;
 }			t_fractal;
 
 void	ft_arguments_check(int argc, char **argv);
-//static void	malloc_error();
 void	ft_fractal_init(t_fractal *fractal);
-//int		ft_init(char *fract);
-//int		ft_mlx_error(t_fractal *fractal);
-//void	ft_mlx_free(t_fractal *fractal);
 
 #endif

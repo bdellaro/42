@@ -42,7 +42,7 @@ void	ft_arguments_check(int argc, char **argv)
 	if (!ft_strncmp(argv[1], "julia", 5) && argc == 3)
 		ft_printf("Missing one argument for Julia fractal\n");
 	if (!ft_strncmp(argv[1], "julia", 5) && argc > 4)
-		ft_printf("Too few arguments for Julia fractal\n");
+		ft_printf("Too much arguments for Julia fractal\n");
 	if (!ft_strncmp(argv[1], "julia", 5) && argc == 4)
 	{
 		ft_printf("===> Julia fractal chosen.\n");
