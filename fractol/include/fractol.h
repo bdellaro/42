@@ -24,6 +24,7 @@
 
 # define WIDTH 1200
 # define HEIGHT 800
+# define SIDE_LEN 800
 
 # define MLX_ERROR -1
 
@@ -42,16 +43,27 @@
 # define ELECTRIC_BLUE   0x0066FF 
 # define LAVA_RED        0xFF3300 
 
+typedef struct	s_img
+{
+	void	*img_ptr;
+	char		*img_pixel_ptr;
+	int			bit_per_pixel;
+	int			endian;
+	int			line_len;
+}			t_img;
+
 typedef struct	s_fractal
 {
-	char		*key_pressed;
-	char		*name;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	char		*key_pressed;
+	char		*name;
 	int			color;
+	t_img	img;
 }			t_fractal;
 
-int		ft_string(t_fractal *fractal);
+int		ft_put_key(int keysym, t_fractal *fractal);
+int		ft_string_on_window(t_fractal *fractal);
 int		ft_handle_input(int keysym, t_fractal *fractal);
 void	ft_arguments_check(int argc, char **argv);
 void	ft_fractal_init(t_fractal *fractal);
