@@ -5,44 +5,58 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/12 14:34:00 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/18 14:38:25 by bdellaro         ###   ########.fr        #
+#    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
+#    Updated: 2024/01/25 18:44:33 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		so_long
 
-SRCS =		src/ft_main.c		\
+SRC =		src/ft_main.c		\
 		src/ft_init.c		\
-		src/ft_utils.c		\
-		src/ft_events.c		\
+#		src/ft_utils.c		\
+#		src/ft_events.c		\
+		
+CC 		= cc
+RM		= rm -f
+CLONE 		= git clone --depth=1
 
-OBJS =		$(SRCS:.c=.o)
+CFLAGS 		= -Wall -Wextra -Werror -I./include -O3
+CLINKS		= -ldl -lglfw -pthread -lm -Llibft -lft
 
-CC = 		cc
+MLX			= MLX42
+LIBMLX 		= $(MLX)/libmlx42.a
 
-CFLAGS =	-Wall -Wextra -Werror -I./include -O2
+OBJ 		= $(SRC:.c=.o)
 
-LIB =		-Lminilibx-linux -lmlx_Linux -Llibft -lft -lXext -lX11 -lm
+all: $(NAME)
 
-RM = 		rm -f
+$(NAME): $(LIBMLX) $(OBJ)
+	cd libft;make
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
 
-all:		$(NAME)
+$(LIBMLX): $(MLX)
+	$(MAKE) -C $(MLX)
 
-$(NAME): 	$(OBJS)
-		cd minilibx-linux;make
-		cd libft;make
-		${RM} Makefile.gen
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${LIB}
+$(MLX):
+	cmake $(MLX) -B $(MLX)	
+	$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		${RM} ${OBJS}
-		cd libft;make clean
-		cd minilibx-linux;make clean
+	$(RM) $(OBJ)
+	cd libft;make clean
+	$(MAKE) clean -C $(MLX)
 
 fclean: clean
-		${RM} ${NAME}
-		cd libft;make fclean
-		cd minilibx-linux;\
-		./configure clean
+	$(RM) $(LIBMLX)
+	cd libft;make fclean
+	$(RM) $(NAME)
+
+clear: fclean
+	$(RM) -r $(MLX) 
 
 re: fclean all
+
+.PHONY:		all bonus clear clean fclean re
