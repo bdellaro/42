@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   MLX42.h                                            :+:      :+:    :+:   */
+/*   MLX42.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: W2Wizard <main@w2wizard.dev>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2023/11/04 20:46:37 by nlaerema         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:23:19 by ntamayo-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * 
  * It's a much more up-to-date alternative to the miniLibX which has been
  * extensively proven to be fragile, unmaintained, deprecated and just
- * plain painfully bad to work with. Also it's code quality is dubious.
+ * plain painfully bad to work with. Also its code quality is dubious.
  * 
  * Some structs contain potential void* which are to be ignored as they 
  * simply represent points of abstraction to the hidden internal header.
@@ -27,8 +27,8 @@
  * for the inner workings eitherway (shaders, vertex buffer, ...).  
  */
 
-#ifndef MLX42
-# define MLX42
+#ifndef MLX42_H
+# define MLX42_H
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>

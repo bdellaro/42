@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../MLX42/mlx42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>

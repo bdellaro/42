@@ -14,7 +14,7 @@
 int	main(int argc, char **argv)
 {
 	t_solong	solong;
-	argv[1] = solong.name;
+	solong.name = argv[1];
 	if (argc == 2)
 		ft_solong_init(&solong);
 	else
