@@ -19,15 +19,18 @@ void	ft_error(void)
 
 void	ft_solong_init(t_solong *solong)
 {
-	solong->mlx = mlx_init(WIDTH, HEIGHT, solong->name, true);
+	int w = 800;
+	int h = 600;
+
+	solong->mlx = mlx_init(w, h, solong->name, true);
 	if (solong->mlx == NULL)
 		ft_error();
-	solong->texture = mlx_load_png("./sprites/test.png");
+	solong->texture = mlx_load_png(GRASS);
 	if (solong->texture == NULL)
 		ft_error();
 //	mlx_set_window_size(solong->mlx, solong->texture->width, solong->texture->height);
 	solong->img = mlx_texture_to_image(solong->mlx, solong->texture);
-	mlx_resize_image(solong->img, WIDTH, HEIGHT);
+	mlx_resize_image(solong->img, w, h);
 	if (solong->img == NULL)
 		ft_error();
 	if (mlx_image_to_window(solong->mlx, solong->img, 0, 0) < 0)

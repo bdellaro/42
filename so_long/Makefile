@@ -11,10 +11,9 @@
 # **************************************************************************** #
 NAME =		so_long
 
-SRC =		src/ft_main.c		\
-		src/ft_init.c		\
-#		src/ft_utils.c		\
-#		src/ft_events.c		\
+SRC =		src/main.c		\
+		src/init_map.c		\
+		src/init.c		\
 		
 CC 		= cc
 RM		= rm -f
@@ -32,7 +31,7 @@ all: $(NAME)
 $(NAME): $(LIBMLX) $(OBJ)
 	cd libft;make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
-	@echo "\033[0;32mMake OK, program ready tu use !\033[0m"
+	@echo "\033[1;32m[MAKE SO_LONG OK]\033[0m"
 
 # $(MLX):
 # 	cmake $(MLX) -B $(MLX)	
@@ -52,13 +51,13 @@ clean:
 		test -d CMakeFiles && $(RM) -r CMakeFiles; \
 		$(RM) mlx_frag_shader.c mlx_vert_shader.c; \
 	}
-	@echo "\033[0;32mMake clean command OK...\033[0m"
+	@echo "\033[1;32m[CLEAN OK]\033[0m"
 
 fclean: clean
 	$(RM) $(LIBMLX)
 	cd libft;make fclean
 	$(RM) $(NAME)
-	@echo "\033[0;32mMake fclean command OK, folders cleared !\033[0m"
+	@echo "\033[1;32m[FCLEAN OK, FOLDERS CLEARED]\033[0m"
 
 clear: fclean
 	$(RM) -r $(MLX) 
