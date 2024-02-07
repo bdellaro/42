@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-char	*ft_strndup(char *str, int len)
+char	*ft_strndup_gnl(char *str, int len)
 {
 	char	*array;
 	int		count;
@@ -26,17 +26,17 @@ char	*ft_strndup(char *str, int len)
 	return (array);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	size_t	i;
 	int		len;
 	char	*array;
 
 	i = 0;
-	len = ft_strlen(s2);
+	len = ft_strlen_gnl(s2);
 	if (!s1)
-		return (ft_strndup(s2, len));
-	len = len + ft_strlen(s1);
+		return (ft_strndup_gnl(s2, len));
+	len = len + ft_strlen_gnl(s1);
 	array = (char *)malloc(sizeof(char) * (len + 1));
 	if (!array)
 		return (NULL);
@@ -51,7 +51,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (array);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	size_t	i;
 

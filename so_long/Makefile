@@ -12,13 +12,14 @@
 NAME =		so_long
 
 SRC =		src/main.c		\
-		src/init_map.c		\
+		src/map.c		\
+		src/check_utils.c	\
 		src/init.c		\
-		
+
 CC 		= cc
 RM		= rm -f
 
-CFLAGS 		= -Wall -Wextra -Werror -I./include -O3
+CFLAGS 		= -Wall -Wextra -Werror -g -I./include -O3
 CLINKS		= -ldl -lglfw -pthread -lm -Llibft -lft
 
 MLX			= MLX42

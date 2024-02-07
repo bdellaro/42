@@ -16,14 +16,15 @@
 #  define BUFFER_SIZE 42
 # endif
 
+# include "../libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+size_t	ft_strlen_gnl(char *str);
+char	*ft_strndup_gnl(char *str, int len);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+//char	*get_next_line(int fd);
 
 #endif

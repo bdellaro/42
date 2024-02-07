@@ -38,14 +38,14 @@ char	*ft_print_line(char **str)
 		i++;
 	if (temp[i] == '\n')
 		i++;
-	line = ft_strndup(temp, i);
-	*str = ft_strndup(temp + i, ft_strlen(temp + i));
+	line = ft_strndup_gnl(temp, i);
+	*str = ft_strndup_gnl(temp + i, ft_strlen_gnl(temp + i));
 	free(temp);
 	temp = NULL;
 	return (line);
 }
 
-void	*ft_free(char **str, char **buffer)
+void	*ft_free_gnl(char **str, char **buffer)
 {
 	if (*str)
 	{
@@ -78,9 +78,9 @@ char	*get_next_line(int fd)
 		{
 			n_read = read(fd, buffer, BUFFER_SIZE);
 			if (n_read < 0)
-				return (ft_free(&str, &buffer));
+				return (ft_free_gnl(&str, &buffer));
 			buffer[n_read] = '\0';
-			str = ft_strjoin(str, buffer);
+			str = ft_strjoin_gnl(str, buffer);
 			if (ft_next(str))
 				break ;
 		}

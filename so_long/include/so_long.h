@@ -9,6 +9,7 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <fcntl.h>
 
 # define IMG_SIZE 32
 
@@ -38,54 +39,94 @@
 
 # define MLX_ERROR -1
 
-typedef struct	s_img
+typedef struct s_set
 {
-	int		width;
-	int		height;
-	int		line_length;
-	
-	
-
-}			t_img;
-
-typedef struct	s_map
-{
-	int		fd;
-	int		count_line;
+	char	exit;
+	char	player;
+	char	wall;
+	char	floor;
+	char	range;
+	char	sl;
+	char	collect;
+	int		collected;
+	int		exit_win;
 	int		count_p;
 	int		count_e;
 	int		count_c;
-	int		can_exit;
-	int		collected;
-	char	*path;
-	char	**map;
-	size_t		line_len;
+}		t_set;
 
-}			t_map;
+typedef struct s_img
+{
+	void	*img_floor;
+	void	*img_wall;
+	void	*img_collect;
+	void	*img_player;
+	void	*img_exit;
+	int			 width;
+	int			 height;
+	char	*player;
+	char	*floor;
+	char	*wall;
+	char	*collect;
+	char	*exit;
+	char	*range;
+ 
+}		t_img;
+
+typedef struct	s_map
+{
+	int			x;
+	int			y;
+	int			player_x;
+	int			player_y;
+	int			width;
+	int			height;
+	int			count;
+	int			line_height;
+	int			line_width;
+	char	**map;
+
+}		t_map;
 
 typedef struct	s_solong
 {
+	char	*data_map;
 	char	*name;
-	int		p_i;
-	int		p_y;
-	int		i;
-	int		j;
-	int		win_width;
-	int		win_height;
-	int		count_step;
+	char	*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+	int			window_width;
+	int			window_height;
+	int			total_length;
+
+	t_map		map;
+	t_img		img;
+	t_set		content;
 	mlx_t		*mlx;
 	mlx_texture_t	*texture;
-	mlx_image_t	*img;
-	t_map	map;
-	t_img	image;
+	mlx_image_t	*mlx_img;
 
-}			t_solong;
+}		t_solong;
 
-int		ft_put_key(int keysym, t_solong *solong);
-int		ft_string_on_window(t_solong *solong);
-int		ft_handle_input(int keysym, t_solong *solong);
-void	ft_arguments_check(int argc, char **argv);
-void	ft_solong_init(t_solong *solong);
-void	ft_mlx_exit(t_solong *solong);
+int	ft_size_of_map(char**map);
+int	ft_check_content(t_solong *solong);
+int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
+char	*get_next_line(int fd);
+void	ft_map_to_2d(t_solong *solong);
+void	ft_read_map(char *map, t_solong *solong);
+void	process_back_image(t_solong *solong);
+void	draw_image_at_index(t_solong *solong, void *img, int i);
+void	set_content(t_set *content);
+void	struct_image(t_solong *solong);
+void	ft_first_init(char *path, char *upper, char **argv);
+void	ft_check_map_line(t_solong *solong);
+void	ft_free_solong(t_solong *solong);
+void	ft_check_vertical_borders(t_solong *solong);
+void	ft_solong_init(char *map, t_solong *solong);
+void	ft_init_player(t_solong *solong);
+void	ft_init_map(t_solong *solong);
 
 #endif
