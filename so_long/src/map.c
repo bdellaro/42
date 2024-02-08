@@ -87,7 +87,9 @@ void	ft_map_to_2d(t_solong *solong)
 		exit(EXIT_FAILURE);
 	}
 	while (solong->map.map[y] != NULL)
+	{
 		y++;
+	}
 	solong->map.line_height = ft_size_of_map(solong->map.map);
 	solong->map.line_width = (ft_strlen(solong->map.map[0]));
-}
+}	

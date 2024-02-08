@@ -15,6 +15,7 @@ SRC =		src/main.c		\
 		src/map.c		\
 		src/check_utils.c	\
 		src/init.c		\
+		src/card.c		\
 
 CC 		= cc
 RM		= rm -f

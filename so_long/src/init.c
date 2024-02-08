@@ -1,12 +1,33 @@
 #include "../include/so_long.h"
 
+void	ft_error_image(char *texture)
+{
+	ft_printf("Error\nUnable to load texture --> %s\n", texture);
+	exit(EXIT_FAILURE);
+}
+
+void	ft_init_image(t_solong *solong)
+{
+	if (!(solong->img.img_floor = mlx_texture_to_image(solong->mlx, solong->tex.tex_floor)))
+		ft_error_image(GRASS);
+	if (!(solong->img.img_stone = mlx_texture_to_image(solong->mlx, solong->tex.tex_stone)))
+		ft_error_image(STONE);
+	if (!(solong->img.img_exit = mlx_texture_to_image(solong->mlx, solong->tex.tex_exit)))
+		ft_error_image(EXIT);
+	if (!(solong->img.img_player = mlx_texture_to_image(solong->mlx, solong->tex.tex_player)))
+		ft_error_image(PERSO);
+	if (!(solong->img.img_wall = mlx_texture_to_image(solong->mlx, solong->tex.tex_wall)))
+		ft_error_image(WALL);
+	if (!(solong->img.img_collect = mlx_texture_to_image(solong->mlx, solong->tex.tex_collect)))
+		ft_error_image(STAR);
+}
+
 void	ft_init_map(t_solong *solong)
 {	
 	solong->map.y = 0;
 	solong->map.x = 0;
 	solong->window_height = solong->map.line_height * IMG_SIZE;
 	solong->window_width  = (solong->map.line_width) * IMG_SIZE;  
-//	ft_printf("%d et %d\n", solong->window_height, solong->window_width);
 }
 
 void	ft_init_player(t_solong *solong)
@@ -24,9 +45,6 @@ void	ft_init_player(t_solong *solong)
 			{
 				solong->map.player_y = y;
 				solong->map.player_x = x;
-				 // Ajoutez cette ligne pour imprimer les valeurs de player_x et player_y
-                		ft_printf("Position du joueur trouvée : x = %d, y = %d\n dans player_x : %d player_y %d", x, y,
-				solong->map.player_x, solong->map.player_y);
 			}
 			x++;
 		}
@@ -42,8 +60,30 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_set_to_zero(t_solong *solong)
+void	ft_struct_image(t_solong *solong)
 {
+	if (!(solong->tex.tex_floor = mlx_load_png(GRASS)))
+		ft_error_image(GRASS);
+	if (!(solong->tex.tex_stone = mlx_load_png(STONE)))
+		ft_error_image(STONE);
+	if (!(solong->tex.tex_exit = mlx_load_png(EXIT)))
+		ft_error_image(EXIT);
+	if (!(solong->tex.tex_player = mlx_load_png(PERSO)))
+		ft_error_image(PERSO);
+	if (!(solong->tex.tex_wall = mlx_load_png(WALL)))
+		ft_error_image(WALL);
+	if (!(solong->tex.tex_collect = mlx_load_png(STAR)))
+		ft_error_image(STAR);
+}
+
+void	ft_set_clean(t_solong *solong)
+{
+/*	solong = (t_solong *)malloc(sizeof(t_solong));
+	if (solong == NULL)
+	{
+	ft_printf("Error\nAllocation failed for t_solong\n");
+		exit(EXIT_FAILURE);
+	}*/
 	solong->content.wall = '1';
 	solong->content.floor = '0';
 	solong->content.player = 'P';
@@ -52,30 +92,26 @@ void	ft_set_to_zero(t_solong *solong)
 	solong->content.collect = 'C';
 	solong->content.count_p = 0;
 	solong->content.count_e = 0;
-	solong->content.count_c = 0;	
+	solong->content.count_c = 0;
+	solong = NULL;
 }
 
 void	ft_solong_init(char *map, t_solong *solong)
 {
-	ft_set_to_zero(solong);
+	ft_set_clean(solong);
 	ft_read_map(map, solong);
 	ft_check_content(solong);
-	ft_printf("Map width  = %d\nMap height = %d\n\n", solong->width,
-	solong->height);
-	
+	ft_printf("Map width  = %d\nMap height = %d\n\n", solong->width, solong->height);
 	ft_map_to_2d(solong);
+	ft_struct_image(solong);
+	ft_init_player(solong);
 	ft_init_map(solong);
-//------------------------
 	solong->mlx = mlx_init(solong->window_width, solong->window_height, solong->name, true);
 	if (solong->mlx == NULL)
 		ft_error();
-	solong->texture = mlx_load_png(GRASS);
-	if (solong->texture == NULL)
-		ft_error();
-	solong->mlx_img = mlx_texture_to_image(solong->mlx, solong->texture);
-	if (solong->mlx_img == NULL)
-		ft_error();
-	if (mlx_image_to_window(solong->mlx, solong->mlx_img, 0, 0) < 0)
-		ft_error();
+	ft_init_image(solong);
+	ft_dispatch_cards(solong);
 	mlx_loop(solong->mlx);
+//	ft_loop_image();
+//	image_core(data);
 }

@@ -101,14 +101,14 @@ int	ft_check_content(t_solong *solong)
 			solong->content.count_c++;
 		i++;
 	}
-	if (solong->content.count_p == 0 || solong->content.count_e == 0 ||
+	if (solong->content.count_p != 1 || solong->content.count_e != 1 ||
 	solong->content.count_c == 0)
 	{
 		ft_printf("Error\n");
 		if (solong->content.count_p != 1)
-			ft_printf("Problem with player initialization\n");
+			ft_printf("Problem with player initialization : %d P\n", solong->content.count_p);
 		if (solong->content.count_e != 1)
-			ft_printf("Problem with exit initialization\n");
+			ft_printf("Problem with exit initialization : %d E\n", solong->content.count_e);
 		if (solong->content.count_c == 0)
 			ft_printf("Missing something to collect\n");
 		ft_free_solong(solong);

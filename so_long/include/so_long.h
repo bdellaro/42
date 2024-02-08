@@ -17,6 +17,11 @@
 # define D 100
 # define S 115
 # define W 119
+# define KEY_ESCAPE 65307
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
 
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
@@ -41,6 +46,7 @@
 
 typedef struct s_set
 {
+	char	stone;
 	char	exit;
 	char	player;
 	char	wall;
@@ -55,8 +61,20 @@ typedef struct s_set
 	int		count_c;
 }		t_set;
 
-typedef struct s_img
+typedef struct	s_texture
 {
+	void	*tex_stone;
+	void	*tex_floor;
+	void	*tex_wall;
+	void	*tex_collect;
+	void	*tex_player;
+	void	*tex_exit;
+
+}		t_texture;
+
+typedef struct	s_img
+{
+	void	*img_stone;
 	void	*img_floor;
 	void	*img_wall;
 	void	*img_collect;
@@ -69,8 +87,9 @@ typedef struct s_img
 	char	*wall;
 	char	*collect;
 	char	*exit;
+	char	*stone;
 	char	*range;
- 
+
 }		t_img;
 
 typedef struct	s_map
@@ -102,6 +121,7 @@ typedef struct	s_solong
 	int			window_height;
 	int			total_length;
 
+	t_texture	tex;
 	t_map		map;
 	t_img		img;
 	t_set		content;
@@ -111,6 +131,7 @@ typedef struct	s_solong
 
 }		t_solong;
 
+int	ft_dispatch_cards(t_solong *solong);
 int	ft_size_of_map(char**map);
 int	ft_check_content(t_solong *solong);
 int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
@@ -128,5 +149,6 @@ void	ft_check_vertical_borders(t_solong *solong);
 void	ft_solong_init(char *map, t_solong *solong);
 void	ft_init_player(t_solong *solong);
 void	ft_init_map(t_solong *solong);
+void	ft_map_to_screen(t_solong *solong);
 
 #endif
