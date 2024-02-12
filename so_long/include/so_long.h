@@ -11,17 +11,17 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 
-# define IMG_SIZE 32
+# define IMG_SIZE 64
 
-# define A 97
-# define D 100
-# define S 115
-# define W 119
-# define KEY_ESCAPE 65307
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_RIGHT 65363
-# define KEY_LEFT 65361
+# define A 65
+# define D 68
+# define S 83
+# define W 87
+# define KEY_ESCAPE 256
+# define KEY_UP 265
+# define KEY_DOWN 264
+# define KEY_RIGHT 262
+# define KEY_LEFT 263
 
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
@@ -35,12 +35,12 @@
 # define MEDIUM	"./maps/medium.ber"
 # define BIG	"./maps/big.ber"
 
-# define GRASS	"./sprites/grass.png"
-# define WALL	"./sprites/wall.png"
-# define STONE	"./sprites/stone.png"
-# define STAR	"./sprites/star.png"
-# define EXIT	"./sprites/exit.png"
-# define PERSO	"./sprites/perso.png"
+# define GRASS	"./sprites/grass64.png"
+# define WALL	"./sprites/wall264.png"
+# define STONE	"./sprites/stone64.png"
+# define STAR	"./sprites/star64.png"
+# define EXIT	"./sprites/exit264.png"
+# define PERSO	"./sprites/perso64.png"
 
 # define MLX_ERROR -1
 
@@ -59,6 +59,7 @@ typedef struct s_set
 	int		count_p;
 	int		count_e;
 	int		count_c;
+	int		count_key;
 }		t_set;
 
 typedef struct	s_texture
@@ -128,6 +129,7 @@ typedef struct	s_solong
 	mlx_t		*mlx;
 	mlx_texture_t	*texture;
 	mlx_image_t	*mlx_img;
+	mlx_key_data_t	*keydata;
 
 }		t_solong;
 
@@ -145,10 +147,18 @@ void	struct_image(t_solong *solong);
 void	ft_first_init(char *path, char *upper, char **argv);
 void	ft_check_map_line(t_solong *solong);
 void	ft_free_solong(t_solong *solong);
+void	ft_hook(t_solong *solong);
 void	ft_check_vertical_borders(t_solong *solong);
 void	ft_solong_init(char *map, t_solong *solong);
 void	ft_init_player(t_solong *solong);
+void	ft_delete_mlx(t_solong *solong);
 void	ft_init_map(t_solong *solong);
 void	ft_map_to_screen(t_solong *solong);
+void	ft_r(void);
+void	ft_delete_mlx(t_solong *solong);
+void	ft_error(void);
+void	ft_error_image(char *texture);
+void	ft_free_solong(t_solong *solong);
+
 
 #endif

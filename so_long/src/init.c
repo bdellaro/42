@@ -1,11 +1,5 @@
 #include "../include/so_long.h"
 
-void	ft_error_image(char *texture)
-{
-	ft_printf("Error\nUnable to load texture --> %s\n", texture);
-	exit(EXIT_FAILURE);
-}
-
 void	ft_init_image(t_solong *solong)
 {
 	if (!(solong->img.img_floor = mlx_texture_to_image(solong->mlx, solong->tex.tex_floor)))
@@ -53,15 +47,9 @@ void	ft_init_player(t_solong *solong)
 	}
 }
 
-
-void	ft_error(void)
-{
-	ft_printf("Error\n");
-	exit(EXIT_FAILURE);
-}
-
 void	ft_struct_image(t_solong *solong)
 {
+	
 	if (!(solong->tex.tex_floor = mlx_load_png(GRASS)))
 		ft_error_image(GRASS);
 	if (!(solong->tex.tex_stone = mlx_load_png(STONE)))
@@ -78,16 +66,12 @@ void	ft_struct_image(t_solong *solong)
 
 void	ft_set_clean(t_solong *solong)
 {
-/*	solong = (t_solong *)malloc(sizeof(t_solong));
-	if (solong == NULL)
-	{
-	ft_printf("Error\nAllocation failed for t_solong\n");
-		exit(EXIT_FAILURE);
-	}*/
+//	ft_bzero(&solong, sizeof(solong));
 	solong->content.wall = '1';
 	solong->content.floor = '0';
 	solong->content.player = 'P';
 	solong->content.exit = 'E';
+	solong->content.stone = 'S';
 	solong->content.sl = '\n';
 	solong->content.collect = 'C';
 	solong->content.count_p = 0;
@@ -96,12 +80,23 @@ void	ft_set_clean(t_solong *solong)
 	solong = NULL;
 }
 
+void	ft_write(t_solong *solong)
+{
+	int	c;
+
+	c = solong->content.count_c;
+	if (c >= 0)
+	{	
+		ft_printf("Dimensions   : \033[1;37m%d * %d\033[0m\nCollectables : \033[1;37m%d\033[0m\n\n", solong->width, solong->height, c);
+		ft_r();
+	}
+}
+
 void	ft_solong_init(char *map, t_solong *solong)
 {
 	ft_set_clean(solong);
 	ft_read_map(map, solong);
 	ft_check_content(solong);
-	ft_printf("Map width  = %d\nMap height = %d\n\n", solong->width, solong->height);
 	ft_map_to_2d(solong);
 	ft_struct_image(solong);
 	ft_init_player(solong);
@@ -111,7 +106,9 @@ void	ft_solong_init(char *map, t_solong *solong)
 		ft_error();
 	ft_init_image(solong);
 	ft_dispatch_cards(solong);
-	mlx_loop(solong->mlx);
+	ft_write(solong);
+	ft_hook(solong);
+	ft_delete_mlx(solong);
 //	ft_loop_image();
 //	image_core(data);
 }

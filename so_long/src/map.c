@@ -1,14 +1,5 @@
 #include "../include/so_long.h"
 
-void	ft_free_solong(t_solong *solong)
-{
-	if (solong->data_map != NULL)
-	{
-		free(solong->data_map);
-		solong->data_map = NULL;
-	}
-}
-
 void	ft_read_map(char *map, t_solong *solong)
 {
 	int		fd;

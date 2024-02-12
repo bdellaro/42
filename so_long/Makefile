@@ -13,9 +13,11 @@ NAME =		so_long
 
 SRC =		src/main.c		\
 		src/map.c		\
-		src/check_utils.c	\
+		src/check_map.c		\
 		src/init.c		\
 		src/card.c		\
+		src/event.c		\
+		src/utils.c		\
 
 CC 		= cc
 RM		= rm -f
