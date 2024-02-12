@@ -1,11 +1,22 @@
 #include "../include/so_long.h"
 
-void	ft_r(void)
+void	ft_set_clean(t_solong *solong)
 {
-	int	 write_error;
-		
-	write_error = write(1, "\r", 1);
-	(void)write_error;
+	solong->map.count = 0;
+	solong->content.count_key = 0;
+	solong->content.collected = 0;
+	solong->content.exit_win = 0;
+	solong->content.wall = '1';
+	solong->content.floor = '0';
+	solong->content.player = 'P';
+	solong->content.exit = 'E';
+	solong->content.stone = 'S';
+	solong->content.sl = '\n';
+	solong->content.collect = 'C';
+	solong->content.count_p = 0;
+	solong->content.count_e = 0;
+	solong->content.count_c = 0;
+	solong = NULL;
 }
 
 void	ft_delete_mlx(t_solong *solong)

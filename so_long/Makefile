@@ -18,6 +18,7 @@ SRC =		src/main.c		\
 		src/card.c		\
 		src/event.c		\
 		src/utils.c		\
+		src/utils_write.c	\
 
 CC 		= cc
 RM		= rm -f

@@ -12,6 +12,8 @@
 # include <fcntl.h>
 
 # define IMG_SIZE 64
+# define SUCCESS 1
+# define FAILURE -1
 
 # define A 65
 # define D 68
@@ -62,18 +64,18 @@ typedef struct s_set
 	int		count_key;
 }		t_set;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*tex_stone;
 	void	*tex_floor;
 	void	*tex_wall;
 	void	*tex_collect;
-	void	*tex_player;
 	void	*tex_exit;
+	void	*tex_player;
 
 }		t_texture;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img_stone;
 	void	*img_floor;
@@ -81,8 +83,8 @@ typedef struct	s_img
 	void	*img_collect;
 	void	*img_player;
 	void	*img_exit;
-	int			 width;
-	int			 height;
+	int		width;
+	int		height;
 	char	*player;
 	char	*floor;
 	char	*wall;
@@ -93,51 +95,51 @@ typedef struct	s_img
 
 }		t_img;
 
-typedef struct	s_map
+typedef struct s_map
 {
-	int			x;
-	int			y;
-	int			player_x;
-	int			player_y;
-	int			width;
-	int			height;
-	int			count;
-	int			line_height;
-	int			line_width;
+	int		x;
+	int		y;
+	int		player_x;
+	int		player_y;
+	int		width;
+	int		height;
+	int		count;
+	int		line_height;
+	int		line_width;
 	char	**map;
 
 }		t_map;
 
-typedef struct	s_solong
+typedef struct s_solong
 {
-	char	*data_map;
-	char	*name;
-	char	*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-	int			window_width;
-	int			window_height;
-	int			total_length;
-
-	t_texture	tex;
-	t_map		map;
-	t_img		img;
-	t_set		content;
-	mlx_t		*mlx;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+	int				window_width;
+	int				window_height;
+	int				total_length;
+	char			*data_map;
+	char			*name;
+	char			*addr;
+	t_texture		tex;
+	t_map			map;
+	t_img			img;
+	t_set			content;
+	mlx_t			*mlx;
+	mlx_image_t		*mlx_img;
 	mlx_texture_t	*texture;
-	mlx_image_t	*mlx_img;
 	mlx_key_data_t	*keydata;
 
 }		t_solong;
 
-int	ft_dispatch_cards(t_solong *solong);
-int	ft_size_of_map(char**map);
-int	ft_check_content(t_solong *solong);
-int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
+int		ft_dispatch_cards(t_solong *solong);
+int		ft_size_of_map(char**map);
+int		ft_check_content(t_solong *solong);
+int		ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
 char	*get_next_line(int fd);
+void	ft_fill_cards(t_solong *solong, int width, int y, int x);
 void	ft_map_to_2d(t_solong *solong);
 void	ft_read_map(char *map, t_solong *solong);
 void	process_back_image(t_solong *solong);
@@ -159,6 +161,8 @@ void	ft_delete_mlx(t_solong *solong);
 void	ft_error(void);
 void	ft_error_image(char *texture);
 void	ft_free_solong(t_solong *solong);
-
+void	ft_card_path(t_solong *solong, char movement);
+void	ft_write(t_solong *solong);
+void	ft_set_clean(t_solong *solong);
 
 #endif

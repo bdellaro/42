@@ -1,96 +1,89 @@
 #include "../include/so_long.h"
 
-/*void	ft_map_to_screen(t_solong *solong)
+int	ft_collapse_img(t_solong *solong)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i <= solong->window_width && j < solong->window_height)
-	{
-		if (i == solong->window_width)
-		{
-			j += IMG_SIZE;
-			i = 0;
-		}
-		if (j == solong->window_height)
-			break ;
-		mlx_image_to_window(solong->mlx, solong->img.img_floor, i, j);
-		i += IMG_SIZE;
-	}
-	mlx_loop(solong->mlx);
+	ft_free_solong(solong);
+	if (NULL != solong->img.img_wall)
+		mlx_delete_image(solong->mlx, solong->img.img_wall);
+	if (NULL != solong->img.img_floor)
+		mlx_delete_image(solong->mlx, solong->img.img_floor);
+	if (NULL != solong->img.img_player)
+		mlx_delete_image(solong->mlx, solong->img.img_player);
+	if (NULL != solong->img.img_collect)
+		mlx_delete_image(solong->mlx, solong->img.img_collect);
+	if (NULL != solong->img.img_exit)
+		mlx_delete_image(solong->mlx, solong->img.img_exit);
+	if (solong->img.img_stone != NULL)
+		mlx_delete_image(solong->mlx, solong->img.img_stone);
+	ft_delete_mlx(solong);
+	return (0);
 }
 
-int win_card_game(t_data *data)
+int	ft_win_card_game(t_solong *solong)
 {
 	if (solong->content.exit_win == 1)
 	{
 
-	    printf("\x1b[32;5;1m"); // 32 pour vert, 5 pour effet clignotant, 1 pour intensité maximale
-	    printf("YOU WIN !!\n");
-	    printf("\x1b[0m"); // 0 pour réinitialiser tout
-		collapse_img(data);
+		ft_printf("\x1b[32;5;1m"); // 32 pour vert, 5 pour effet clignotant, 1 pour intensité maximale
+		ft_printf("\n  YOU WIN !\n");
+		ft_printf("\x1b[0m"); // 0 pour réinitialiser tout
+		ft_collapse_img(solong);
 		return (SUCCESS);
 	}
 	else
 		return (FAILURE);
 }
 
-void collect_pot (t_data *data, char cardinal)
+void	ft_collect_pot(t_solong *solong, char movement)
 {
-	if ((cardinal == KEY_UP || cardinal =='w')
-		 && solong->map.map[solong->map.player_y - 1][solong->map.player_x] == solong->content.collect
-		|| (cardinal == KEY_DOWN  || cardinal == 's')
-		 && solong->map.map[solong->map.player_y + 1][solong->map.player_x] == solong->content.collect
-		|| (cardinal == KEY_RIGHT || cardinal == 'd')
-		 && solong->map.map[solong->map.player_y][solong->map.player_x + 1] == solong->content.collect
-	 	|| (cardinal == KEY_LEFT  || cardinal == 'a')
-	 	 && solong->map.map[solong->map.player_y][solong->map.player_x - 1] == solong->content.collect)
+	if (((movement =='w') && solong->map.map[solong->map.player_y -
+	1][solong->map.player_x] == solong->content.collect) ||
+	((movement == 's') && solong->map.map[solong->map.player_y +
+	1][solong->map.player_x] == solong->content.collect) ||
+	((movement == 'd') &&
+	solong->map.map[solong->map.player_y][solong->map.player_x + 1]
+	== solong->content.collect) || ((movement == 'a') &&
+	solong->map.map[solong->map.player_y][solong->map.player_x - 1]
+	== solong->content.collect))
 	 {
-	 	solong->content.collected++;
-	 	printf("valeur collect --%d-- valeur compte de collect -%d---\n", solong->content.collected, solong->content.count_e);
+	 	solong->content.count_c--;
+		solong->content.collected++;
 	 }
 }
 
-void card_path (t_data *data, char cardinal)
+int	ft_pull_next_card(t_solong *solong, char movement, char card)
 {
-	if (pull_next_card(data, cardinal, solong->content.wall) == SUCCESS
-		|| (solong->content.exit_win == 0
-		&& pull_next_card(data, cardinal, solong->content.exit) == SUCCESS))
-		return ;
-	solong->map.count++;;
-	collect_pot(data, cardinal);
+	if ((movement == 'w' && solong->map.map[solong->map.player_y - 1][solong->map.player_x] == card) || (movement == 's' && solong->map.map[solong->map.player_y + 1][solong->map.player_x] == card) || (movement == 'd' && solong->map.map[solong->map.player_y][solong->map.player_x + 1] == card) || (movement == 'a' && solong->map.map[solong->map.player_y][solong->map.player_x - 1] == card))
+		return (SUCCESS);
+	else
+		return (FAILURE);
+}
+
+void	ft_card_path(t_solong *solong, char movement)
+{
+	if (ft_pull_next_card(solong, movement, solong->content.wall) == SUCCESS ||
+        ft_pull_next_card(solong, movement, solong->content.stone) == SUCCESS ||
+        (solong->content.exit_win == 0 &&
+        ft_pull_next_card(solong, movement, solong->content.exit) == SUCCESS))
+        return ;
+	solong->map.count++;
+	ft_collect_pot(solong, movement);
 	if (solong->content.collected == solong->content.count_c)
 		solong->content.exit_win = 1;
 	solong->map.map[solong->map.player_y][solong->map.player_x] = solong->content.floor;
-	if (cardinal == KEY_UP || cardinal == 'w')
+	if (movement == 'w')
 		solong->map.player_y--;
-	else if (cardinal == KEY_DOWN || cardinal == 's')
+	else if (movement == 's')
 		solong->map.player_y++;
-	else if (cardinal == KEY_RIGHT || cardinal == 'd')
+	else if (movement == 'd')
 		solong->map.player_x++;
-	else if (cardinal == KEY_LEFT || cardinal =='a')
+	else if (movement =='a')
 		solong->map.player_x--;
-
 	if (solong->content.exit_win == 1 && solong->map.map[solong->map.player_y][solong->map.player_x] == solong->content.exit)
-		win_card_game(data);
+		ft_win_card_game(solong);
 	solong->map.map[solong->map.player_y][solong->map.player_x] = solong->content.player;
+	ft_dispatch_cards(solong);
 }
-
-int pull_next_card(t_data *data, char cardinal, char card)
-{
-	if (((cardinal == KEY_UP || cardinal == 'w') && solong->map.map[solong->map.player_y - 1][solong->map.player_x] == card) ||
-		((cardinal == KEY_DOWN || cardinal == 's') && solong->map.map[solong->map.player_y + 1][solong->map.player_x] == card) ||
-		((cardinal == KEY_RIGHT || cardinal == 'd') && solong->map.map[solong->map.player_y][solong->map.player_x + 1] == card) ||
-		((cardinal == KEY_LEFT || cardinal == 'a') && solong->map.map[solong->map.player_y][solong->map.player_x - 1] == card))
-	{
-		return SUCCESS;
-	} else
-	{
-		return FAILURE;
-	}
-}*/
 
 void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 {
@@ -129,28 +122,26 @@ int	ft_dispatch_cards(t_solong *solong)
 		width = 0;
 		y++;
 	 }
-	 ft_printf("");
 	 return (0);
 }
 /*int is_ther_ny(t_data *data)
 {
-    int i;
-    int j;
-    int count;
+	int i;
+	int j;
+	int count;
 
-    i = 0;
-    count = 0;
-    while (solong->map.map[i]) // Parcours des lignes
-    {
-        j = 0; // Initialisation de j pour chaque nouvelle ligne
-        while(solong->map.map[i][j]) // Parcours des colonnes de la ligne i
-        {
-            if(solong->map.map[i][j] == solong->content.collect)
-                count++;
-            j++; // Incrémentation de j pour passer à l'élément suivant dans la ligne
-        }
-        i++; // Passage à la ligne suivante après avoir terminé la ligne courante
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (solong->map.map[i]) // Parcours des lignes
+	{
+		j = 0; // Initialisation de j pour chaque nouvelle ligne
+		while(solong->map.map[i][j]) // Parcours des colonnes de la ligne i
+		{
+			if(solong->map.map[i][j] == solong->content.collect)
+				count++;
+			j++; // Incrémentation de j pour passer à l'élément suivant dans la ligne
+		}
+		i++; // Passage à la ligne suivante après avoir terminé la ligne courante
+	}
+	return (count);
 }*/
-

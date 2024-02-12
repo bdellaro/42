@@ -15,35 +15,48 @@ void	ft_print_key(mlx_key_data_t keydata, void *solong_ptr)
 		{
 			ft_printf("Step -> \033[1;37mUP   \033[0m");
 			ft_r();
+			ft_card_path(solong, 'w');
 		}
 		if (keydata.key == S || keydata.key == KEY_DOWN)
 		{
 			ft_printf("Step -> \033[1;37mDOWN \033[0m");
 			ft_r();
+			ft_card_path(solong, 's');
+
 		}
 		if (keydata.key == A || keydata.key == KEY_LEFT)
 		{
 			ft_printf("Step -> \033[1;37mLEFT \033[0m");
 			ft_r();
+			ft_card_path(solong, 'a');
+
 		}
 		if (keydata.key == D || keydata.key == KEY_RIGHT)
 		{
 			ft_printf("Step -> \033[1;37mRIGHT\033[0m");
 			ft_r();
+			ft_card_path(solong, 'd');
+
 		}
 		if (keydata.key == KEY_ESCAPE)
 		{
-			ft_printf("\n\n\033[1;35mECHAP key pressed !\033[0m\n");
+			ft_printf("\n\n\033[1;35m[ECHAP PRESSED]\033[0m\n");
+			ft_free_solong(solong);
 			ft_delete_mlx(solong);
 		}
 		if (!(ft_check_key(keydata)))
 		{	
-			ft_printf("Wrong key pressed. Use W, A, S, D to move\n");
+			ft_printf("Wrong key pressed. Use W, A, S, D to move                \n");
 		}
 		if (ft_check_key(keydata))
 		{
 			solong->content.count_key++;
-			ft_printf("		\033[1;35m[ %d ]\033[0m", solong->content.count_key);
+			ft_printf("		Count -> \033[1;37m[%d]\033[0m",
+			solong->map.count);
+			if (solong->content.count_c < 10)
+				ft_printf("	 Left -> \033[1;37m[%d] \033[0m", solong->content.count_c);
+			else
+				ft_printf("	 Left -> \033[1;37m[%d]\033[0m", solong->content.count_c);
 			ft_r();
 		}
 	}
@@ -63,13 +76,4 @@ void	ft_hook(t_solong *solong)
 	solong->window_height / 2 + 10);
 	mlx_key_hook(solong->mlx, &ft_print_key, solong);
 	mlx_loop(solong->mlx);
-//	ft_movement(&keydata, solong);
-}
-
-void	ft_movement(mlx_key_data_t keydata, void *solong_ptr)
-{
-	t_solong	*solong;
-	solong = (t_solong *)solong_ptr;
-	if (mlx_is_key_down(solong->mlx, MLX_KEY_S))
-		ft_printf("Key pressed : %d\n", keydata.key);
 }
