@@ -67,8 +67,10 @@ void	ft_print_key(mlx_key_data_t keydata, void *solong_ptr)
 			ft_delete_mlx(solong);
 		}
 		if (!(ft_check_key(keydata)))
-			ft_printf("Wrong key pressed. Use W, A, S, D to \
-	/		move                \n");
+		{
+			ft_printf("Wrong key pressed. Use W, A, S, D ");
+			ft_printf("to move               \n");
+		}
 		if (ft_check_key(keydata))
 			ft_is_else(solong);
 	}

@@ -59,14 +59,14 @@ void	ft_map_check(char **argv)
 		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		ft_first_init(argv[1], "USER MAP", argv);
 	upper = ft_upper(argv[1]);
-	if (!ft_strncmp(upper, "SMALL", 5)
-		&& !ft_strncmp(upper, "SMALL", 6) != 0)
+	if ((!ft_strncmp(upper, "SMALL", 5))
+		&& (!ft_strncmp(upper, "SMALL", 6)) != 0)
 		ft_first_init(SMALL, upper, argv);
-	if (!ft_strncmp(upper, "MEDIUM", 6)
-		&& !ft_strncmp(upper, "MEDIUM", 7) != 0)
+	if ((!ft_strncmp(upper, "MEDIUM", 6))
+		&& (!ft_strncmp(upper, "MEDIUM", 7)) != 0)
 		ft_first_init(MEDIUM, upper, argv);
-	if (!ft_strncmp(upper, "BIG", 3)
-		&& !ft_strncmp(upper, "BIG", 4) != 0)
+	if ((!ft_strncmp(upper, "BIG", 3))
+		&& (!ft_strncmp(upper, "BIG", 4)) != 0)
 		ft_first_init(BIG, upper, argv);
 	else
 		ft_error_print(argv);

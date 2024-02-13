@@ -38,6 +38,8 @@ void	ft_card_path(t_solong *solong, char movement)
 		return ;
 	solong->map.count++;
 	ft_collect_pot(solong, movement);
+	if (solong->content.count_c == 1)
+		solong->content.collected++;
 	if (solong->content.collected == solong->content.count_c)
 		solong->content.exit_win = 1;
 	solong->map.map[solong->map.player_y] \
