@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/13 14:30:09 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/13 14:30:21 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 void	ft_handle_error(t_solong *solong, int fd)
@@ -37,6 +48,7 @@ void	ft_read_map_data(int fd, t_solong *solong)
 			solong->width = (line_length - 1);
 		temp = solong->data_map;
 		solong->data_map = ft_strjoin(solong->data_map, line);
+		ft_printf("   %s", line);
 		free(temp);
 		free(line);
 		line = get_next_line(fd);
