@@ -38,10 +38,13 @@ void	ft_init_map(t_solong *solong)
 
 int	ft_is_movable(t_solong *solong, char movement)
 {
-	return (ft_pull_next_card(solong, movement, solong->content.wall) == SUCCESS
-		|| ft_pull_next_card(solong, movement, solong->content.stone) == SUCCESS
-			|| (solong->content.exit_win == 0
-				&& ft_pull_next_card(solong, movement, solong->content.exit) == SUCCESS));
+	return (ft_pull_next_card(solong, movement, \
+	solong->content.wall) == SUCCESS \
+	|| ft_pull_next_card(solong, movement, \
+	solong->content.stone) == SUCCESS \
+	|| (solong->content.exit_win == 0 \
+	&& ft_pull_next_card(solong, movement, \
+	solong->content.exit) == SUCCESS));
 }
 
 int	ft_collapse_img(t_solong *solong)
@@ -65,18 +68,20 @@ int	ft_collapse_img(t_solong *solong)
 
 void	ft_collect_pot(t_solong *solong, char movement)
 {
-	if (((movement =='w')
-		&& solong->map.map[solong->map.player_y \
-	 - 1][solong->map.player_x] == solong->content.collect)
-	 	|| ((movement == 's')
-			&& solong->map.map[solong->map.player_y +
-	1][solong->map.player_x] == solong->content.collect)
-		|| ((movement == 'd')
-			&& solong->map.map[solong->map.player_y][solong->map.player_x + 1] == solong->content.collect)
-		|| ((movement == 'a')
-			&& solong->map.map[solong->map.player_y][solong->map.player_x - 1] == solong->content.collect))
-	 {
-	 	solong->content.count_c--;
+	if (((movement == 'w') && \
+	solong->map.map[solong->map.player_y \
+	- 1][solong->map.player_x] == solong->content.collect) \
+	|| ((movement == 's') \
+	&& solong->map.map[solong->map.player_y + \
+	1][solong->map.player_x] == solong->content.collect) \
+	|| ((movement == 'd') \
+	&& solong->map.map[solong->map.player_y] \
+	[solong->map.player_x + 1] == solong->content.collect) \
+	|| ((movement == 'a') \
+	&& solong->map.map[solong->map.player_y] \
+	[solong->map.player_x - 1] == solong->content.collect))
+	{
+		solong->content.count_c--;
 		solong->content.collected++;
-	 }
+	}
 }

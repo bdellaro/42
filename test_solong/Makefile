@@ -17,7 +17,7 @@ CC 		= cc
 RM		= rm -f
 
 CFLAGS 		= -Wall -Wextra -Werror -g -I./include -O3
-CLINKS		= -ldl -lglfw -pthread -lm
+CLINKS		= -ldl -lglfw -pthread -lm -Llibft -lft
 
 MLX			= MLX42
 LIBMLX 		= $(MLX)/libmlx42.a
@@ -27,6 +27,7 @@ OBJ 		= $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIBMLX) $(OBJ)
+	cd libft;make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
 	@echo "\033[1;32m[MAKE SO_LONG OK]\033[0m"
 
@@ -42,6 +43,7 @@ $(LIBMLX):
 
 clean:
 	$(RM) $(OBJ)
+	-cd libft;make clean
 	-cd $(MLX) && { \
 		$(RM) Makefile cmake_install.cmake CMakeCache.txt; \
 		test -d CMakeFiles && $(RM) -r CMakeFiles; \
@@ -51,6 +53,7 @@ clean:
 
 fclean: clean
 	$(RM) $(LIBMLX)
+	cd libft;make fclean
 	$(RM) $(NAME)
 	@echo "\033[1;32m[FCLEAN OK, FOLDERS CLEARED]\033[0m"
 
