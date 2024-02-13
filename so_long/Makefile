@@ -19,6 +19,7 @@ SRC =		src/main.c		\
 		src/event.c		\
 		src/utils.c		\
 		src/utils_write.c	\
+		src/utils_init.c	\
 
 CC 		= cc
 RM		= rm -f

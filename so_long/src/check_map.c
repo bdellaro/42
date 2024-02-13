@@ -1,9 +1,37 @@
 #include "../include/so_long.h"
 
-void	ft_check_map_line(t_solong *solong) 
+void	ft_check_vertical_borders(t_solong *solong)
 {
 	int	i;
-	
+	int	j;
+
+	i = 0;
+	j = solong->width - 1;
+	while (i < solong->total_length)
+	{
+		if (solong->data_map[i] != '1')
+		{
+			ft_printf("Error\nLeft map border invalid\n");
+			ft_free_solong(solong);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+		if (solong->data_map[j] != '1')
+		{
+			ft_printf("Error\nRight map border invalid\n");
+			ft_free_solong(solong);
+			exit(EXIT_FAILURE);
+		}
+		j++;
+		i += solong->width;
+		j += solong->width;
+	}
+}
+
+void	ft_check_map_line(t_solong *solong)
+{
+	int	i;
+
 	i = 0;
 	while (i < solong->width)
 	{
@@ -29,40 +57,10 @@ void	ft_check_map_line(t_solong *solong)
 	ft_check_vertical_borders(solong);
 }
 
-void	ft_check_vertical_borders(t_solong *solong)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	j = solong->width - 1;
-	while (i < solong->total_length)
-	{
-
-		if (solong->data_map[i] != '1')
-		{
-			ft_printf("Error\nLeft map border invalid\n");
-			ft_free_solong(solong);
-			exit(EXIT_FAILURE);
-
-		}
-		i++;
-		if (solong->data_map[j] != '1')
-		{
-			ft_printf("Error\nRight map border invalid\n");
-			ft_free_solong(solong);
-			exit(EXIT_FAILURE);
-		}
-		j++;
-	i += solong->width;
-	j += solong->width;
-	}
-}
-
 int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong)
 {
 	int	i;
-	
+
 	i = 0;
 	while (data_map[i] != 0)
 	{
@@ -72,7 +70,7 @@ int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong)
 			free(data_map);
 			exit(EXIT_FAILURE);
 		}
-		if (solong->data_map[i] != content->player && solong->data_map[i] != content->exit && solong->data_map[i] != content->collect && solong->data_map[i] != content->wall && solong->data_map[i] != content->floor && solong->data_map[i] != content->sl && solong->data_map[i] != content->stone)
+		if (ft_is_content(solong, i))
 		{
 			ft_printf("Error\nInvalid map\n");
 			free(data_map);
@@ -87,9 +85,10 @@ int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong)
 int	ft_check_content(t_solong *solong)
 {
 	int	i;
+	int	map_check;
 
 	i = 0;
-	while (solong->data_map[i] != 0) 
+	while (solong->data_map[i] != 0)
 	{
 		if (solong->data_map[i] == solong->content.player)
 			solong->content.count_p++;
@@ -99,21 +98,10 @@ int	ft_check_content(t_solong *solong)
 			solong->content.count_c++;
 		i++;
 	}
-	if (solong->content.count_p != 1 || solong->content.count_e != 1 ||
-	solong->content.count_c == 0)
-	{
-		ft_printf("Error\n");
-		if (solong->content.count_p != 1)
-			ft_printf("Problem with player initialization : %d P\n", solong->content.count_p);
-		if (solong->content.count_e != 1)
-			ft_printf("Problem with exit initialization : %d E\n", solong->content.count_e);
-		if (solong->content.count_c == 0)
-			ft_printf("Missing something to collect\n");
-		ft_free_solong(solong);
-		exit(EXIT_FAILURE);
-	}
-	if (ft_check_error_map(solong->data_map, &solong->content, solong) ==
-	0)
+	ft_content_error(solong);
+	map_check = ft_check_error_map(solong->data_map, \
+		&solong->content, solong);
+	if (map_check == 0)
 		ft_printf("  \033[1;35m[MAP OK]\033[0m\n\n");
 	return (0);
 }

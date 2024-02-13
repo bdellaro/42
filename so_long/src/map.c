@@ -1,86 +1,61 @@
 #include "../include/so_long.h"
 
-void	ft_read_map(char *map, t_solong *solong)
+void	ft_handle_error(t_solong *solong, int fd)
 {
-	int		fd;
-	int		line_length;
-	char	*line;
-	char	*temp;
+	ft_printf("Error\nMap not found");
+	ft_free_solong(solong);
+	close(fd);
+	exit(EXIT_FAILURE);
+}
 
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error\nMap not found");
-		ft_free_solong(solong);
-		exit(EXIT_FAILURE);
-	}
+void	ft_initialize_solong(t_solong *solong)
+{
 	solong->height = 0;
 	solong->width = 0;
 	solong->total_length = 0;
 	solong->data_map = malloc(1);
 	if (solong->data_map == NULL)
 	{
-		close(fd);
+		ft_printf("Error\nMemory allocation failed");
 		exit(EXIT_FAILURE);
 	}
 	solong->data_map[0] = 0;
-	while ((line = get_next_line(fd)) != NULL)
+}
+
+void	ft_read_map_data(int fd, t_solong *solong)
+{
+	char	*line;
+	int		line_length;
+	char	*temp;
+
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		line_length = ft_strlen(line);
 		solong->total_length += line_length;
 		if (solong->height == 0)
 			solong->width = (line_length - 1);
 		temp = solong->data_map;
-		solong->data_map = ft_strjoin(solong->data_map,
-		line);
-		ft_printf("   %s", line);
+		solong->data_map = ft_strjoin(solong->data_map, line);
 		free(temp);
 		free(line);
+		line = get_next_line(fd);
 		solong->height++;
 	}
-	ft_printf("\n");
-	if (solong->height == 0 || solong->total_length == 0)
+	ft_print_map_error(solong, fd);
+}
+
+void	ft_read_map(char *map, t_solong *solong)
+{
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
 	{
-		ft_printf("Error\nEmpty map\n");
-		close(fd);
-		exit(EXIT_FAILURE);
+		ft_handle_error(solong, fd);
+		return ;
 	}
-	if (solong->height == solong->width)
-	{
-		ft_printf("Error\nMap is not rectangular");
-		ft_free_solong(solong);
-		exit(EXIT_FAILURE);
-	}
+	ft_initialize_solong(solong);
+	ft_read_map_data(fd, solong);
 	close(fd);
 }
-
-
-
-int	ft_size_of_map(char **map)
-{
-	int count = 0;
-	while (map[count] != NULL) {
-		count++;
-	}
-	return (count);
-}
-
-
-void	ft_map_to_2d(t_solong *solong)
-{
-	int	y;
-
-	y = 0;
-	solong->map.map = ft_split(solong->data_map, '\n');
-	if (solong->map.map == NULL)
-	{
-		ft_printf("Error\nProblem while converting map to 2D array");
-		exit(EXIT_FAILURE);
-	}
-	while (solong->map.map[y] != NULL)
-	{
-		y++;
-	}
-	solong->map.line_height = ft_size_of_map(solong->map.map);
-	solong->map.line_width = (ft_strlen(solong->map.map[0]));
-}	

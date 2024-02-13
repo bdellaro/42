@@ -1,41 +1,5 @@
 #include "../include/so_long.h"
 
-void	ft_init_image(t_solong *solong)
-{
-	solong->img.img_exit = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_exit);
-	solong->img.img_player = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_player);
-	solong->img.img_wall = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_wall);
-	solong->img.img_collect = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_collect);
-	solong->img.img_stone = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_stone);
-	solong->img.img_floor = mlx_texture_to_image \
-		(solong->mlx, solong->tex.tex_floor);
-	if (!solong->img.img_floor)
-		ft_error_image(GRASS);
-	if (!solong->img.img_stone)
-		ft_error_image(STONE);
-	if (!solong->img.img_exit)
-		ft_error_image(EXIT);
-	if (!solong->img.img_player)
-		ft_error_image(PERSO);
-	if (!solong->img.img_wall)
-		ft_error_image(WALL);
-	if (!solong->img.img_collect)
-		ft_error_image(STAR);
-}
-
-void	ft_init_map(t_solong *solong)
-{
-	solong->map.y = 0;
-	solong->map.x = 0;
-	solong->window_height = solong->map.line_height * IMG_SIZE;
-	solong->window_width = solong->map.line_width * IMG_SIZE;
-}
-
 void	ft_init_player(t_solong *solong)
 {
 	int	x;
@@ -100,4 +64,33 @@ void	ft_solong_init(char *map, t_solong *solong)
 	ft_dispatch_cards(solong);
 	ft_hook(solong);
 	ft_delete_mlx(solong);
+}
+
+int	ft_size_of_map(char **map)
+{
+	int	count;
+
+	count = 0;
+	while (map[count] != NULL)
+		count++;
+	return (count);
+}
+
+void	ft_map_to_2d(t_solong *solong)
+{
+	int	y;
+
+	y = 0;
+	solong->map.map = ft_split(solong->data_map, '\n');
+	if (solong->map.map == NULL)
+	{
+		ft_printf("Error\nProblem while converting map to 2D array");
+		exit(EXIT_FAILURE);
+	}
+	while (solong->map.map[y] != NULL)
+	{
+		y++;
+	}
+	solong->map.line_height = ft_size_of_map(solong->map.map);
+	solong->map.line_width = (ft_strlen(solong->map.map[0]));
 }

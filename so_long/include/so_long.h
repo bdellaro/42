@@ -134,23 +134,26 @@ typedef struct s_solong
 
 }		t_solong;
 
+int		ft_collapse_img(t_solong *solong);
+int		ft_pull_next_card(t_solong *solong, char movement, char card);
+int		ft_is_movable(t_solong *solong, char movement);
 int		ft_dispatch_cards(t_solong *solong);
 int		ft_size_of_map(char**map);
+int		ft_is_content(t_solong *solong, int i);
 int		ft_check_content(t_solong *solong);
 int		ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
 char	*get_next_line(int fd);
 void	ft_fill_cards(t_solong *solong, int width, int y, int x);
 void	ft_map_to_2d(t_solong *solong);
 void	ft_read_map(char *map, t_solong *solong);
+void	ft_print_map_error(t_solong *solong, int fd);
 void	process_back_image(t_solong *solong);
 void	draw_image_at_index(t_solong *solong, void *img, int i);
 void	set_content(t_set *content);
 void	struct_image(t_solong *solong);
 void	ft_first_init(char *path, char *upper, char **argv);
-void	ft_check_map_line(t_solong *solong);
 void	ft_free_solong(t_solong *solong);
 void	ft_hook(t_solong *solong);
-void	ft_check_vertical_borders(t_solong *solong);
 void	ft_solong_init(char *map, t_solong *solong);
 void	ft_init_player(t_solong *solong);
 void	ft_delete_mlx(t_solong *solong);
@@ -164,5 +167,9 @@ void	ft_free_solong(t_solong *solong);
 void	ft_card_path(t_solong *solong, char movement);
 void	ft_write(t_solong *solong);
 void	ft_set_clean(t_solong *solong);
+void	ft_collect_pot(t_solong *solong, char movement);
+void	ft_init_image(t_solong *solong);
+void	ft_init_map(t_solong *solong);
+void	ft_content_error(t_solong *solong);
 
 #endif
