@@ -49,9 +49,7 @@ void	ft_card_path(t_solong *solong, char movement)
 		return ;
 	solong->map.count++;
 	ft_collect_pot(solong, movement);
-	if (solong->content.count_c == 0 \
-	|| solong->content.collected == solong->content.count_c)
-		solong->content.exit_win = 1;
+	ft_is_winable(solong);
 	solong->map.map[solong->map.player_y] \
 	[solong->map.player_x] = solong->content.floor;
 	if (movement == 'w')

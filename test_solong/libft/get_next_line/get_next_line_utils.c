@@ -15,7 +15,7 @@ char	*ft_strndup_gnl(char *str, int len)
 {
 	char	*array;
 	int		count;
-
+	char	*result;
 	if (!str || !len)
 		return (NULL);
 	count = -1;
@@ -23,7 +23,8 @@ char	*ft_strndup_gnl(char *str, int len)
 	while (++count < len)
 		array[count] = str[count];
 	array[count] = '\0';
-	return (array);
+	result = array;
+	return (result);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
@@ -31,6 +32,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	size_t	i;
 	int		len;
 	char	*array;
+	char	*result;
 
 	i = 0;
 	len = ft_strlen_gnl(s2);
@@ -48,7 +50,9 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		array[len++] = s2[i++];
 	array[len] = '\0';
 	free(s1);
-	return (array);
+	result = array;
+	free(array);
+	return (result);
 }
 
 size_t	ft_strlen_gnl(char *str)

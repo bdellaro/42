@@ -11,33 +11,44 @@
 /* ************************************************************************** */
 #include "libft.h"
 #include <stdio.h>
+char	*ft_strndup(char *str, int len)
+{
+	char	*array;
+	int		count;
 
-char	*ft_strjoin(char const *s1, char const *s2)
+	if (!str || !len)
+		return (NULL);
+	count = -1;
+	array = (char *)malloc((len + 1) * sizeof(char));
+	while (++count < len)
+		array[count] = str[count];
+	array[count] = '\0';
+	return (array);
+}
+
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	*s3;
+	int		len;
+	char	*array;
 
 	i = 0;
-	j = 0;
-	k = ft_strlen(s1) + ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (k + 1));
-	if (!s3 || !s1 || !s2)
+	len = ft_strlen(s2);
+	if (!s1)
+		return (ft_strndup(s2, len));
+	len = len + ft_strlen(s1);
+	array = (char *)malloc(sizeof(char) * (len + 1));
+	if (!array)
 		return (NULL);
+	len = 0;
 	while (s1[i])
-	{
-		s3[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		s3[i] = s2[j];
-		i++;
-		j++;
-	}
-	s3[k] = 0;
-	return (s3);
+		array[len++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		array[len++] = s2[i++];
+	array[len] = '\0';
+	free(s1);
+	return (array);
 }
 /*int	main(void)
 {

@@ -60,7 +60,6 @@ int	ft_is_movable(t_solong *solong, char movement)
 
 int	ft_collapse_img(t_solong *solong)
 {
-	ft_free_solong(solong);
 	if (NULL != solong->img.img_wall)
 		mlx_delete_image(solong->mlx, solong->img.img_wall);
 	if (NULL != solong->img.img_floor)

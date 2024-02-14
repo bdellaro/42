@@ -16,7 +16,7 @@ SRC =		test.c		\
 CC 		= cc
 RM		= rm -f
 
-CFLAGS 		= -Wall -Wextra -Werror -g -I./include -O3
+CFLAGS 		= -g  -I./include -O3
 CLINKS		= -ldl -lglfw -pthread -lm -Llibft -lft
 
 MLX			= MLX42

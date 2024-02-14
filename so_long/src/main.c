@@ -17,6 +17,7 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
+	free(upper);
 	if (ft_strncmp(argv[1], "./maps/", 8) == 0)
 	{
 		solong.name = argv[1];
@@ -24,7 +25,6 @@ void	ft_first_init(char *path, char *upper, char **argv)
 	}
 	else
 		ft_solong_init(path, &solong);
-	exit(EXIT_SUCCESS);
 }
 
 void	ft_error_print(char **argv)
@@ -37,7 +37,6 @@ void	ft_error_print(char **argv)
 	ft_printf("\033[1;35mSmall\033[0m", argv[0]);
 	ft_printf("\n                      -> \033[1;35mBig\033[0m");
 	ft_printf("\n                      -> \033[1;35mMedium\033[0m\n");
-	exit (EXIT_FAILURE);
 }
 
 char	*ft_upper(char *argv)
@@ -80,8 +79,10 @@ void	ft_map_check(char **argv)
 		&& (!ft_strncmp(upper, "BIG", 4)) != 0)
 		ft_first_init(BIG, upper, argv);
 	else
+	{
 		ft_error_print(argv);
-	free(upper);
+		free(upper);
+	}
 }
 
 int	main(int argc, char **argv)

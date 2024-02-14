@@ -20,6 +20,7 @@ SRC =		src/main.c		\
 		src/utils.c		\
 		src/utils_write.c	\
 		src/utils_init.c	\
+		src/utils_game.c	\
 
 CC 		= cc
 RM		= rm -f

@@ -155,6 +155,7 @@ int		ft_is_content(t_solong *solong, int i);
 int		ft_check_content(t_solong *solong);
 int		ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
 char	*get_next_line(int fd);
+void	ft_is_winable(t_solong *solong);
 void	ft_fill_cards(t_solong *solong, int width, int y, int x);
 void	ft_map_to_2d(t_solong *solong);
 void	ft_read_map(char *map, t_solong *solong);

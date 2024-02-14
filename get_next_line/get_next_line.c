@@ -88,10 +88,10 @@ char	*get_next_line(int fd)
 	free(buffer);
 	return (ft_print_line(&str));
 }
-/*
+
 int	main(void)
 {
-	int fd = open("../File_descriptori.txt", O_RDONLY);
+	int fd = open("File_descriptor.txt", O_RDONLY);
 	char	*str;
 	
 	while (1)
@@ -104,4 +104,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}*/
+}

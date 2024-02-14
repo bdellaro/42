@@ -546,8 +546,6 @@ void	ft_read_map_data(int fd, t_solong *solong)
 		temp = solong->data_map;
 		solong->data_map = ft_strjoin(solong->data_map, line);
 		ft_printf("   %s", line);
-		free(temp);
-		free(line);
 		line = get_next_line(fd);
 		solong->height++;
 	}
@@ -619,6 +617,7 @@ void	ft_solong_init(char *map, t_solong *solong)
 {
 	ft_set_clean(solong);
 	ft_read_map(map, solong);
+	exit(EXIT_SUCCESS);
 	ft_check_content(solong);
 	ft_map_to_2d(solong);
 	ft_struct_image(solong);
@@ -670,6 +669,7 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
+	free(upper);
 	if (ft_strncmp(argv[1], "./maps/", 8) == 0)
 	{
 		solong.name = argv[1];
@@ -725,8 +725,7 @@ void	ft_map_check(char **argv)
 	upper = ft_upper(argv[1]);
 	if ((!ft_strncmp(upper, "SMALL", 5))
 		&& (!ft_strncmp(upper, "SMALL", 6)) != 0)
-		ft_printf("Ok argv");
-//		ft_first_init(SMALL, upper, argv);
+		ft_first_init(SMALL, upper, argv);
 	if ((!ft_strncmp(upper, "MEDIUM", 6))
 		&& (!ft_strncmp(upper, "MEDIUM", 7)) != 0)
 		ft_first_init(MEDIUM, upper, argv);
