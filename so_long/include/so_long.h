@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:29:43 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/13 14:30:21 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:05:06 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void	struct_image(t_solong *solong);
 void	ft_first_init(char *path, char *upper, char **argv);
 void	ft_free_solong(t_solong *solong);
 void	ft_hook(t_solong *solong);
-void	ft_solong_init(char *map, t_solong *solong);
+void	ft_solong_init(char *map, t_solong *solong, int arg);
 void	ft_init_player(t_solong *solong);
 void	ft_delete_mlx(t_solong *solong);
 void	ft_init_map(t_solong *solong);
