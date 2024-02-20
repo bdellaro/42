@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/25 18:44:33 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/02/20 12:58:20 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		so_long
@@ -21,6 +21,7 @@ SRC =		src/main.c		\
 		src/utils_write.c	\
 		src/utils_init.c	\
 		src/utils_game.c	\
+		src/parsing.c		\
 
 CC 		= cc
 RM		= rm -f

@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:29:43 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/20 11:05:06 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/02/20 13:13:31 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define IMG_SIZE 64
 # define SUCCESS 1
 # define FAILURE -1
+
+# define MAX_MAP_SIZE 100
+# define MAX_QUEUE_SIZE 1000 
 
 # define A 65
 # define D 68
@@ -146,6 +149,7 @@ typedef struct s_solong
 
 }		t_solong;
 
+int		ft_is_playable(t_solong *solong);
 int		ft_collapse_img(t_solong *solong);
 int		ft_pull_next_card(t_solong *solong, char movement, char card);
 int		ft_is_movable(t_solong *solong, char movement);

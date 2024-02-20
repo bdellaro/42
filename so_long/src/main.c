@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:30:07 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/20 11:39:24 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:14:09 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -17,15 +17,14 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
-	if (ft_strncmp(argv[1], "./maps/", 8) == 0)
+	if (ft_strnstr(argv[1], "./maps/", 8)
+		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
 		solong.name = argv[1];
 		ft_solong_init(path, &solong, 0);
 	}
 	else
-	{
 		ft_solong_init(path, &solong, 1);
-	}
 }
 
 void	ft_error_print(char **argv)
@@ -73,10 +72,10 @@ void	ft_map_check(char **argv)
 	if ((!ft_strncmp(upper, "SMALL", 5))
 		&& (!ft_strncmp(upper, "SMALL", 6)) != 0)
 		ft_first_init(SMALL, upper, argv);
-	else if ((!ft_strncmp(upper, "MEDIUM", 6))
+	if ((!ft_strncmp(upper, "MEDIUM", 6))
 		&& (!ft_strncmp(upper, "MEDIUM", 7)) != 0)
 		ft_first_init(MEDIUM, upper, argv);
-	else if ((!ft_strncmp(upper, "BIG", 3))
+	if ((!ft_strncmp(upper, "BIG", 3))
 		&& (!ft_strncmp(upper, "BIG", 4)) != 0)
 		ft_first_init(BIG, upper, argv);
 	else
@@ -90,7 +89,6 @@ int	main(int argc, char **argv)
 {
 	t_solong	solong;
 
-//	solong = ft_create_solong();
 	ft_bzero(&solong, sizeof(t_solong));
 	if (argc == 2)
 		ft_map_check(argv);
