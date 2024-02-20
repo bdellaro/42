@@ -30,6 +30,7 @@ void	ft_initialize_solong(t_solong *solong)
 		ft_printf("Error\nMemory allocation failed");
 		exit(EXIT_FAILURE);
 	}
+	//free ?
 	solong->data_map[0] = 0;
 }
 

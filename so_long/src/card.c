@@ -18,7 +18,7 @@ int	ft_win_card_game(t_solong *solong)
 		ft_printf("\033[32;5;1m");
 		ft_printf("\n  YOU WIN !\n");
 		ft_printf("\033[0m");
-		ft_collapse_img(solong);
+		ft_delete_mlx(solong);
 		return (SUCCESS);
 	}
 	else
@@ -93,9 +93,10 @@ void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 
 int	ft_dispatch_cards(t_solong *solong)
 {
-	int	width;
-	int	y;
-	int	x;
+	int		width;
+	int		y;
+	int		x;
+//	char	**map_two;
 
 	y = 0;
 	x = 0;
@@ -112,5 +113,6 @@ int	ft_dispatch_cards(t_solong *solong)
 		width = 0;
 		y++;
 	}
+	//map_two == solong->map;
 	return (0);
 }

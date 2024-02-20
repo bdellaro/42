@@ -41,27 +41,16 @@ void	ft_delete_mlx(t_solong *solong)
 	mlx_delete_texture(solong->tex.tex_player);
 	mlx_delete_texture(solong->tex.tex_floor);
 	mlx_delete_texture(solong->tex.tex_collect);
-//	ft_collapse_img(solong);
+	mlx_delete_image(solong->mlx, solong->img.img_wall);
+	mlx_delete_image(solong->mlx, solong->img.img_floor);
+	mlx_delete_image(solong->mlx, solong->img.img_player);
+	mlx_delete_image(solong->mlx, solong->img.img_collect);
+	mlx_delete_image(solong->mlx, solong->img.img_exit);
+	mlx_delete_image(solong->mlx, solong->img.img_stone);
+	mlx_close_window(solong->mlx);
 	mlx_terminate(solong->mlx);
-	free(solong->img.player);
-	free(solong->img.floor);
-	free(solong->img.wall);
-//	free(solong->img.collect);
-//	free(solong->img.exit);
-	free(solong->img.stone);
-//	free(solong->img.range);
-	free(solong->map.map);
+	ft_free_2d(solong->map.map);
 	free(solong->data_map);
-	free(solong->name);
-//	free(solong->addr);
-//	free(solong->tex);
-//	free(solong->map);
-//	free(solong->img);
-//	free(solong->content);
-//	free(solong->mlx);
-//	free(solong->mlx_img);
-//	free(solong->texture);
-//	free(solong->keydata);
 	exit(EXIT_SUCCESS);
 }
 

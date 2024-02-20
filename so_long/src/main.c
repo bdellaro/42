@@ -17,14 +17,17 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
-	free(upper);
 	if (ft_strncmp(argv[1], "./maps/", 8) == 0)
 	{
 		solong.name = argv[1];
 		ft_solong_init(path, &solong);
+		free(upper);
 	}
 	else
+	{
 		ft_solong_init(path, &solong);
+		free(upper);
+	}
 }
 
 void	ft_error_print(char **argv)
@@ -87,6 +90,10 @@ void	ft_map_check(char **argv)
 
 int	main(int argc, char **argv)
 {
+	t_solong	solong;
+
+//	solong = ft_create_solong();
+	ft_bzero(&solong, sizeof(t_solong));
 	if (argc == 2)
 		ft_map_check(argv);
 	else
