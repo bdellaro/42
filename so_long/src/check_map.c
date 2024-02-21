@@ -112,6 +112,7 @@ int	ft_check_content(t_solong *solong)
 	ft_content_error(solong);
 	map_check = ft_check_error_map(solong->data_map, \
 		&solong->content, solong);
+	ft_is_playable_map(solong);
 	if (map_check == 0)
 		ft_printf("  \033[1;35m[MAP OK]\033[0m\n\n");
 	return (0);

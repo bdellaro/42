@@ -65,6 +65,7 @@ typedef struct s_set
 {
 	char	stone;
 	char	exit;
+
 	char	player;
 	char	wall;
 	char	floor;
@@ -135,6 +136,18 @@ typedef struct s_solong
 	int				window_width;
 	int				window_height;
 	int				total_length;
+	int				parsing_line_height;
+	int				parsing_line_width;
+	int				player_x;
+	int				player_y;
+	int				visited[MAX_MAP_SIZE][MAX_MAP_SIZE];
+	int				queue[MAX_QUEUE_SIZE][2];
+	int				arg;
+	int				front;
+	int				rear;
+	int				dx[4];
+	int				dy[4];	
+	char			parsing_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 	char			*data_map;
 	char			*name;
 	char			*addr;
@@ -149,13 +162,13 @@ typedef struct s_solong
 
 }		t_solong;
 
-int		ft_is_playable(t_solong *solong);
 int		ft_collapse_img(t_solong *solong);
 int		ft_pull_next_card(t_solong *solong, char movement, char card);
 int		ft_is_movable(t_solong *solong, char movement);
 int		ft_dispatch_cards(t_solong *solong);
 int		ft_size_of_map(char**map);
 int		ft_is_content(t_solong *solong, int i);
+int		ft_is_playable_map(t_solong *solong);
 int		ft_check_content(t_solong *solong);
 int		ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
 t_solong	*ft_create_solong(void);

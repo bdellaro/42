@@ -62,7 +62,7 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	ft_set_clean(solong);
 	ft_read_map(map, solong);
 	ft_check_content(solong);
-//	ft_is_playable(solong);
+//	ft_is_playable_map(solong);
 	ft_map_to_2d(solong);
 	ft_struct_image(solong);
 	ft_init_player(solong);
@@ -70,8 +70,8 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	solong->mlx = mlx_init(solong->window_width, \
 	solong->window_height, solong->name, true);
 	ft_printf("Arg = %d\n", arg);
-	//if (arg == 1)
-	//	free(solong->name);
+	if (arg == 1)
+		free(solong->name);
 	if (solong->mlx == NULL)
 		ft_error();
 	ft_init_image(solong);
