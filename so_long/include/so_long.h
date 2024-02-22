@@ -27,9 +27,6 @@
 # define SUCCESS 1
 # define FAILURE -1
 
-# define MAX_MAP_SIZE 100
-# define MAX_QUEUE_SIZE 1000 
-
 # define A 65
 # define D 68
 # define S 83
@@ -39,14 +36,6 @@
 # define KEY_DOWN 264
 # define KEY_RIGHT 262
 # define KEY_LEFT 263
-
-# define RED "\033[0;31m"
-# define RESET "\033[0m"
-# define GREEN "\033[1;32m"
-# define PURPLE "\033[1;35m"
-# define CYAN "\033[1;36m"
-# define WHITE "\033[1;37m"
-# define PINK "\033[38;5;206m"
 
 # define SMALL	"./maps/small.ber"
 # define MEDIUM	"./maps/medium.ber"
@@ -65,13 +54,13 @@ typedef struct s_set
 {
 	char	stone;
 	char	exit;
-
 	char	player;
 	char	wall;
 	char	floor;
 	char	range;
 	char	sl;
 	char	collect;
+	int		count_stars;
 	int		collected;
 	int		exit_win;
 	int		count_p;
@@ -135,19 +124,11 @@ typedef struct s_solong
 	int				height;
 	int				window_width;
 	int				window_height;
+	int				collect_stars;
 	int				total_length;
-	int				parsing_line_height;
-	int				parsing_line_width;
 	int				player_x;
 	int				player_y;
-	int				visited[MAX_MAP_SIZE][MAX_MAP_SIZE];
-	int				queue[MAX_QUEUE_SIZE][2];
 	int				arg;
-	int				front;
-	int				rear;
-	int				dx[4];
-	int				dy[4];	
-	char			parsing_map[MAX_MAP_SIZE][MAX_MAP_SIZE];
 	char			*data_map;
 	char			*name;
 	char			*addr;
@@ -162,16 +143,15 @@ typedef struct s_solong
 
 }		t_solong;
 
+int		ft_valid_path(t_solong *solong);
 int		ft_collapse_img(t_solong *solong);
 int		ft_pull_next_card(t_solong *solong, char movement, char card);
 int		ft_is_movable(t_solong *solong, char movement);
 int		ft_dispatch_cards(t_solong *solong);
 int		ft_size_of_map(char**map);
 int		ft_is_content(t_solong *solong, int i);
-int		ft_is_playable_map(t_solong *solong);
 int		ft_check_content(t_solong *solong);
 int		ft_check_error_map(char *data_map, t_set *content, t_solong *solong);
-t_solong	*ft_create_solong(void);
 char	*get_next_line(int fd);
 void	ft_free_2d(char **map);
 void	ft_is_winable(t_solong *solong);

@@ -20,6 +20,7 @@ void	ft_init_player(t_solong *solong)
 	y = 0;
 	while (solong->map.map[y])
 	{
+		x = 0;
 		while (solong->map.map[y][x])
 		{
 			if (solong->map.map[y][x] == solong->content.player)
@@ -27,6 +28,7 @@ void	ft_init_player(t_solong *solong)
 				solong->content.exit_win = 0;
 				solong->map.player_y = y;
 				solong->map.player_x = x;
+				return ;
 			}
 			x++;
 		}
@@ -62,14 +64,13 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	ft_set_clean(solong);
 	ft_read_map(map, solong);
 	ft_check_content(solong);
-//	ft_is_playable_map(solong);
 	ft_map_to_2d(solong);
 	ft_struct_image(solong);
 	ft_init_player(solong);
 	ft_init_map(solong);
+	ft_valid_path(solong);
 	solong->mlx = mlx_init(solong->window_width, \
 	solong->window_height, solong->name, true);
-	ft_printf("Arg = %d\n", arg);
 	if (arg == 1)
 		free(solong->name);
 	if (solong->mlx == NULL)
