@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:29:43 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/20 13:13:31 by bdellaro         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
