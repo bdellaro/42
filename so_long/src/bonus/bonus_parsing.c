@@ -1,4 +1,4 @@
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_free_visited(t_solong *solong)
 {

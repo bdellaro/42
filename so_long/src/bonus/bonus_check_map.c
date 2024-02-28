@@ -1,15 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:30:00 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/13 14:30:21 by bdellaro         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_check_vertical_borders(t_solong *solong)
 {
@@ -83,7 +72,7 @@ int	ft_check_error_map(char *data_map, t_set *content, t_solong *solong)
 		}
 		if (ft_is_content(solong, i))
 		{
-			ft_printf("Error\nInvalid map\n");
+			ft_printf("Error\nInvalid caracter into map\n");
 			free(data_map);
 			exit(EXIT_FAILURE);
 		}

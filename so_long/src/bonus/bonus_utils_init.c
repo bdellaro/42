@@ -1,18 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils_init.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:30:11 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/13 14:30:21 by bdellaro         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_init_image(t_solong *solong)
 {
+	solong->img.img_stone = mlx_texture_to_image \
+		(solong->mlx, solong->tex.tex_stone);
 	solong->img.img_exit = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_exit);
 	solong->img.img_player = mlx_texture_to_image \
@@ -23,6 +14,8 @@ void	ft_init_image(t_solong *solong)
 		(solong->mlx, solong->tex.tex_collect);
 	solong->img.img_floor = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_floor);
+	if (!solong->img.img_stone)
+		ft_error_image(STONE);
 	if (!solong->img.img_floor)
 		ft_error_image(GRASS);
 	if (!solong->img.img_exit)
@@ -47,6 +40,8 @@ int	ft_is_movable(t_solong *solong, char movement)
 {
 	return (ft_pull_next_card(solong, movement, \
 	solong->content.wall) == SUCCESS \
+	|| ft_pull_next_card(solong, movement, \
+	solong->content.stone) == SUCCESS \
 	|| (solong->content.exit_win == 0 \
 	&& ft_pull_next_card(solong, movement, \
 	solong->content.exit) == SUCCESS));
@@ -64,6 +59,8 @@ int	ft_collapse_img(t_solong *solong)
 		mlx_delete_image(solong->mlx, solong->img.img_collect);
 	if (NULL != solong->img.img_exit)
 		mlx_delete_image(solong->mlx, solong->img.img_exit);
+	if (NULL != solong->img.img_stone)
+		mlx_delete_image(solong->mlx, solong->img.img_stone);
 	ft_delete_mlx(solong);
 	return (0);
 }

@@ -75,6 +75,9 @@ void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 	else if (solong->map.map[y][x] == solong->content.exit)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_exit, width, y * IMG_SIZE);
+	else if (solong->map.map[y][x] == solong->content.stone)
+		mlx_image_to_window(solong->mlx, \
+		solong->img.img_stone, width, y * IMG_SIZE);
 }
 
 int	ft_dispatch_cards(t_solong *solong)

@@ -1,15 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:30:04 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/20 14:02:43 by bdellaro         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	ft_init_player(t_solong *solong)
 {
@@ -39,11 +28,14 @@ void	ft_init_player(t_solong *solong)
 
 void	ft_struct_image(t_solong *solong)
 {
+	solong->tex.tex_stone = mlx_load_png(STONE);
 	solong->tex.tex_floor = mlx_load_png(GRASS);
 	solong->tex.tex_wall = mlx_load_png(WALL);
 	solong->tex.tex_exit = mlx_load_png(EXIT);
 	solong->tex.tex_collect = mlx_load_png(STAR);
 	solong->tex.tex_player = mlx_load_png(PERSO);
+	if (!solong->tex.tex_stone)
+		ft_error_image(STONE);
 	if (!solong->tex.tex_floor)
 		ft_error_image(GRASS);
 	if (!solong->tex.tex_exit)

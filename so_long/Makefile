@@ -9,9 +9,22 @@
 #    Updated: 2024/02/20 12:58:20 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME =		so_long
+NAME 		= so_long
+NAME_B		= so_long_bonus
 
-SRC =		src/main.c		\
+SRC_B	=	src/bonus/bonus_main.c		\
+		src/bonus/bonus_map.c		\
+		src/bonus/bonus_check_map.c	\
+		src/bonus/bonus_init.c		\
+		src/bonus/bonus_card.c		\
+		src/bonus/bonus_event.c		\
+		src/bonus/bonus_utils.c		\
+		src/bonus/bonus_utils_write.c	\
+		src/bonus/bonus_utils_init.c	\
+		src/bonus/bonus_utils_game.c	\
+		src/bonus/bonus_parsing.c	\
+
+SRC	=	src/main.c		\
 		src/map.c		\
 		src/check_map.c		\
 		src/init.c		\
@@ -33,16 +46,21 @@ MLX			= MLX42
 LIBMLX 		= $(MLX)/libmlx42.a
 
 OBJ 		= $(SRC:.c=.o)
+OBJ_B		= $(SRC_B:.c=.o)
 
-all: $(NAME)
+all:	$(NAME)
+bonus:	$(NAME_B)
+
+$(NAME_B): $(LIBMLX) $(OBJ_B)
+	cd libft;make
+	$(CC) $(CFLAGS) -o $(NAME_B) $(OBJ_B) $(LIBMLX) $(CLINKS)
+	@echo "\033[1;32m[MAKE SO_LONG_BONUS OK]\033[0m"
+
 
 $(NAME): $(LIBMLX) $(OBJ)
 	cd libft;make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
 	@echo "\033[1;32m[MAKE SO_LONG OK]\033[0m"
-
-# $(MLX):
-# 	cmake $(MLX) -B $(MLX)	
 
 $(LIBMLX):
 	cmake $(MLX) -B $(MLX)
@@ -52,7 +70,7 @@ $(LIBMLX):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJ_B)
 	-cd libft;make clean
 	-cd $(MLX) && { \
 		$(RM) Makefile cmake_install.cmake CMakeCache.txt; \
@@ -64,7 +82,7 @@ clean:
 fclean: clean
 	$(RM) $(LIBMLX)
 	cd libft;make fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_B)
 	@echo "\033[1;32m[FCLEAN OK, FOLDERS CLEARED]\033[0m"
 
 clear: fclean

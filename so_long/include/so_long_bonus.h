@@ -9,6 +9,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <sys/time.h>
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -28,15 +29,20 @@
 # define SMALL	"./maps/small.ber"
 # define MEDIUM	"./maps/medium.ber"
 # define BIG	"./maps/big.ber"
+# define SMALL_B	"./maps/small_bonus.ber"
+# define MEDIUM_B	"./maps/medium_bonus.ber"
+# define BIG_B 		"./maps/big_bonus.ber"
 
 # define GRASS	"./sprites/grass64.png"
 # define WALL	"./sprites/wall264.png"
 # define STAR	"./sprites/star64.png"
 # define EXIT	"./sprites/exit264.png"
 # define PERSO	"./sprites/perso64.png"
+# define STONE	"./sprites/stone64.png"
 
 typedef struct s_set
 {
+	char	stone;
 	char	exit;
 	char	player;
 	char	wall;
@@ -55,6 +61,7 @@ typedef struct s_set
 
 typedef struct s_texture
 {
+	void	*tex_stone;
 	void	*tex_floor;
 	void	*tex_wall;
 	void	*tex_collect;
@@ -65,6 +72,7 @@ typedef struct s_texture
 
 typedef struct s_img
 {
+	void	*img_stone;
 	void	*img_floor;
 	void	*img_wall;
 	void	*img_collect;
@@ -77,6 +85,7 @@ typedef struct s_img
 	char	*wall;
 	char	*collect;
 	char	*exit;
+	char	*stone;
 	char	*range;
 
 }		t_img;
