@@ -23,6 +23,10 @@ SRC_B	=	src/bonus/bonus_main.c		\
 		src/bonus/bonus_utils_init.c	\
 		src/bonus/bonus_utils_game.c	\
 		src/bonus/bonus_parsing.c	\
+		src/bonus/bonus_sup.c		\
+		src/bonus/bonus_animation.c	\
+		src/bonus/bonus_sprites.c	\
+		src/bonus/bonus_path_sup.c	\
 
 SRC	=	src/main.c		\
 		src/map.c		\

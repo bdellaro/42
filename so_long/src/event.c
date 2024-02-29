@@ -91,9 +91,13 @@ void	ft_hook(t_solong *solong)
 {
 	char	*how_to;
 	char	*to_quit;
+	char	*beware;
 
-	how_to = "Use W, A, S, D to move !";
-	to_quit = "Press ECHAP to quit game";
+	beware = "Collect the stars, beware of the snakes !";
+	how_to = "Use W, A, S, D to move";
+	to_quit = "Press ESC to quit game";
+	mlx_put_string(solong->mlx, beware, solong->window_width \
+	/ 2 - (ft_strlen(beware) * 5), solong->window_height / 2 + 90);
 	mlx_put_string(solong->mlx, how_to, solong->window_width \
 	/ 2 - (ft_strlen(how_to) * 5), solong->window_height / 2 - 10);
 	mlx_put_string(solong->mlx, to_quit, solong->window_width \

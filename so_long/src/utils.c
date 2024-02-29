@@ -29,6 +29,10 @@ void	ft_set_clean(t_solong *solong)
 	solong->content.count_p = 0;
 	solong->content.count_e = 0;
 	solong->content.count_c = 0;
+	solong->img.img_floor = NULL;
+	solong->img.img_wall = NULL;
+	solong->img.img_collect = NULL;
+	solong->img.img_player = NULL;
 	solong = NULL;
 }
 

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/29 18:18:14 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/29 18:18:26 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 void	ft_free_visited(t_solong *solong)
@@ -30,8 +41,7 @@ void	ft_compare_count_items(t_solong *solong)
 
 void	ft_visit(t_solong *solong, int y, int x, int **visited)
 {
-	if (y < 0 || x < 0 || y >= solong->height || x >= solong->width \
-	|| solong->map.map[y][x] == '1' || visited[y][x])
+	if (solong->map.map[y][x] == '1' || visited[y][x])
 		return ;
 	visited[y][x] = 1;
 	if (solong->map.map[y][x] == 'E')

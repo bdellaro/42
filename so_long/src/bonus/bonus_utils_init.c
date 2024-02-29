@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_utils_init.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:11:13 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_init_image(t_solong *solong)
@@ -26,6 +37,7 @@ void	ft_init_image(t_solong *solong)
 		ft_error_image(WALL);
 	if (!solong->img.img_collect)
 		ft_error_image(STAR);
+	ft_bonus_image(solong);
 }
 
 void	ft_init_map(t_solong *solong)

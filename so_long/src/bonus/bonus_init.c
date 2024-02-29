@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:10:46 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_init_player(t_solong *solong)
@@ -46,6 +57,7 @@ void	ft_struct_image(t_solong *solong)
 		ft_error_image(WALL);
 	if (!solong->tex.tex_collect)
 		ft_error_image(STAR);
+	ft_bonus_texture(solong);
 }
 
 void	ft_solong_init(char *map, t_solong *solong, int arg)
@@ -68,6 +80,9 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	ft_write(solong);
 	ft_dispatch_cards(solong);
 	ft_hook(solong);
+	mlx_key_hook(solong->mlx, &ft_print_key, solong);
+	mlx_loop_hook(solong->mlx, &ft_animation, solong);
+	mlx_loop(solong->mlx);
 	ft_delete_mlx(solong);
 }
 

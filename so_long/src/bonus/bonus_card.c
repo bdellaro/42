@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_card.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:10:26 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 int	ft_win_card_game(t_solong *solong)
@@ -34,6 +45,7 @@ int	ft_pull_next_card(t_solong *solong, char movement, char card)
 
 void	ft_card_path(t_solong *solong, char movement)
 {
+	ft_loose_game(solong, movement);
 	if (ft_is_movable(solong, movement))
 		return ;
 	solong->map.count++;
@@ -46,12 +58,11 @@ void	ft_card_path(t_solong *solong, char movement)
 	else if (movement == 's')
 		solong->map.player_y++;
 	else if (movement == 'd')
-		solong->map.player_x++;
+		ft_key_d(solong);
 	else if (movement == 'a')
-		solong->map.player_x--;
-	if (solong->content.exit_win == 1
-		&& solong->map.map[solong->map.player_y] \
-		[solong->map.player_x] == solong->content.exit)
+		ft_key_a(solong);
+	if (solong->content.exit_win == 1 && solong->map.map[solong->map. \
+	player_y][solong->map.player_x] == solong->content.exit)
 		ft_win_card_game(solong);
 	solong->map.map[solong->map.player_y] \
 	[solong->map.player_x] = solong->content.player;
@@ -66,12 +77,13 @@ void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 	else if (solong->map.map[y][x] == solong->content.floor)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_floor, width, y * IMG_SIZE);
-	else if (solong->map.map[y][x] == solong->content.collect)
-		mlx_image_to_window(solong->mlx, \
-		solong->img.img_collect, width, y * IMG_SIZE);
-	else if (solong->map.map[y][x] == solong->content.player)
+	else if (solong->map.map[y][x] == solong->content.player && \
+		solong->movement != 'a')
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_player, width, y * IMG_SIZE);
+	else if (solong->map.map[y][x] == solong->content.player && \
+		solong->movement == 'a')
+		ft_player_a(solong);
 	else if (solong->map.map[y][x] == solong->content.exit)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_exit, width, y * IMG_SIZE);

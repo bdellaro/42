@@ -110,8 +110,13 @@ int	ft_check_content(t_solong *solong)
 		i++;
 	}
 	ft_content_error(solong);
-	map_check = ft_check_error_map(solong->data_map, \
-		&solong->content, solong);
+	map_check = ft_check_error_map(solong->data_map, &solong->content, solong);
+	if (solong->width <= 6 || solong->height < 4)
+	{
+		ft_printf("Error\nMap too small\n");
+		free(solong->data_map);
+		exit(EXIT_FAILURE);
+	}
 	if (map_check == 0)
 		return (0);
 	return (0);

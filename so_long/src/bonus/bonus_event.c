@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_event.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:10:40 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_is_else(t_solong *solong)
 {
 	solong->content.count_key++;
-	ft_printf("		Count -> \033[1;37m[%d]\033[0m" \
-	, solong->map.count);
 	if (solong->content.count_c < 10)
-		ft_printf("	 Left -> \033[1;37m[%d] \
+		ft_printf("		 Left -> \033[1;37m[%d] \
 		\033[0m", solong->content.count_c);
 	else
-		ft_printf("	 Left -> \033[1;37m[%d] \
+		ft_printf("		 Left -> \033[1;37m[%d] \
 		\033[0m", solong->content.count_c);
 	ft_r();
 }
@@ -57,6 +66,7 @@ void	ft_print_key(mlx_key_data_t keydata, void *solong_ptr)
 	t_solong	*solong;
 
 	solong = (t_solong *)solong_ptr;
+	ft_string_screen(solong);
 	if (keydata.action == 1)
 	{
 		ft_is_key(keydata, solong);
@@ -80,13 +90,15 @@ void	ft_hook(t_solong *solong)
 {
 	char	*how_to;
 	char	*to_quit;
+	char	*beware;
 
-	how_to = "Use W, A, S, D to move !";
-	to_quit = "Press ECHAP to quit game";
+	beware = "Beware of the snakes !";
+	how_to = "Use W, A, S, D to move";
+	to_quit = "Press ESC to quit game";
+	mlx_put_string(solong->mlx, beware, solong->window_width \
+	/ 2 - (ft_strlen(beware) * 5), 25);
 	mlx_put_string(solong->mlx, how_to, solong->window_width \
-	/ 2 - (ft_strlen(how_to) * 5), solong->window_height / 2 - 10);
+	/ 2 - (ft_strlen(how_to) * 5), solong->window_height - 40);
 	mlx_put_string(solong->mlx, to_quit, solong->window_width \
-	/ 2 - (ft_strlen(to_quit) * 5), solong->window_height / 2 + 10);
-	mlx_key_hook(solong->mlx, &ft_print_key, solong);
-	mlx_loop(solong->mlx);
+	/ 2 - (ft_strlen(to_quit) * 5), solong->window_height -25);
 }

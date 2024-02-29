@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:10:53 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_first_init(char *path, char *upper, char **argv)
@@ -6,8 +17,7 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
-	if (ft_strnstr(argv[1], "./maps/", 8)
-		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
 		solong.name = argv[1];
 		ft_solong_init(path, &solong, 0);
@@ -54,19 +64,18 @@ void	ft_map_check(char **argv)
 {
 	char	*upper;
 
-	if (ft_strnstr(argv[1], "./maps/", 8)
-		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		ft_first_init(argv[1], "USER MAP", argv);
 	upper = ft_upper(argv[1]);
 	if ((!ft_strncmp(upper, "SMALL", 5))
 		&& (!ft_strncmp(upper, "SMALL", 6)) != 0)
-		ft_first_init(SMALL, upper, argv);
+		ft_first_init(SMALL_B, upper, argv);
 	if ((!ft_strncmp(upper, "MEDIUM", 6))
 		&& (!ft_strncmp(upper, "MEDIUM", 7)) != 0)
-		ft_first_init(MEDIUM, upper, argv);
+		ft_first_init(MEDIUM_B, upper, argv);
 	if ((!ft_strncmp(upper, "BIG", 3))
 		&& (!ft_strncmp(upper, "BIG", 4)) != 0)
-		ft_first_init(BIG, upper, argv);
+		ft_first_init(BIG_B, upper, argv);
 	else
 	{
 		ft_error_print(argv);

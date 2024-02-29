@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/28 14:11:22 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/02/28 14:14:28 by bdellaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_set_clean(t_solong *solong)
@@ -14,6 +25,7 @@ void	ft_set_clean(t_solong *solong)
 	solong->content.floor = '0';
 	solong->content.player = 'P';
 	solong->content.exit = 'E';
+	solong->content.enemy = 'X';
 	solong->content.sl = '\n';
 	solong->content.collect = 'C';
 	solong->content.count_p = 0;
@@ -30,12 +42,20 @@ void	ft_delete_mlx(t_solong *solong)
 	mlx_delete_texture(solong->tex.tex_floor);
 	mlx_delete_texture(solong->tex.tex_collect);
 	mlx_delete_texture(solong->tex.tex_stone);
+	mlx_delete_texture(solong->tex.tex_player_a);
+	mlx_delete_texture(solong->tex.tex_enemy);
+	mlx_delete_texture(solong->tex.tex_enemy_b);
+	mlx_delete_texture(solong->tex.tex_collect_b);
 	mlx_delete_image(solong->mlx, solong->img.img_wall);
 	mlx_delete_image(solong->mlx, solong->img.img_floor);
 	mlx_delete_image(solong->mlx, solong->img.img_player);
 	mlx_delete_image(solong->mlx, solong->img.img_collect);
 	mlx_delete_image(solong->mlx, solong->img.img_exit);
 	mlx_delete_image(solong->mlx, solong->img.img_stone);
+	mlx_delete_image(solong->mlx, solong->img.img_player_a);
+	mlx_delete_image(solong->mlx, solong->img.img_enemy);
+	mlx_delete_image(solong->mlx, solong->img.img_enemy_b);
+	mlx_delete_image(solong->mlx, solong->img.img_collect_b);
 	mlx_close_window(solong->mlx);
 	mlx_terminate(solong->mlx);
 	ft_free_2d(solong->map.map);
@@ -61,8 +81,9 @@ int	ft_is_content(t_solong *solong, int i)
 		&& solong->data_map[i] != solong->content.collect \
 		&& solong->data_map[i] != solong->content.wall \
 		&& solong->data_map[i] != solong->content.floor \
-		&& solong->data_map[i] != solong->content.sl; \
-		&& solong->data_map[i] != solong->content.stone);
+		&& solong->data_map[i] != solong->content.sl \
+		&& solong->data_map[i] != solong->content.stone \
+		&& solong->data_map[i] != solong->content.enemy);
 }
 
 void	ft_content_error(t_solong *solong)

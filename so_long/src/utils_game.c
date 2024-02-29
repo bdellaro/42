@@ -51,7 +51,7 @@ t_solong	*ft_create_solong(void)
 	solong = (t_solong *)malloc(sizeof(t_solong));
 	if (solong == NULL)
 	{
-		ft_printf("Error\nAllocation failed for solong\n");
+		ft_printf("Error\nAllocation failed for game structure\n");
 		exit(EXIT_FAILURE);
 	}
 	ft_set_clean(solong);
