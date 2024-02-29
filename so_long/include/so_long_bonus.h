@@ -40,6 +40,7 @@
 # define SMALL	"./maps/small.ber"
 # define MEDIUM	"./maps/medium.ber"
 # define BIG	"./maps/big.ber"
+
 # define SMALL_B	"./maps/bonus/bonus_small.ber"
 # define MEDIUM_B	"./maps/bonus/bonus_medium.ber"
 # define BIG_B 		"./maps/bonus/bonus_big.ber"
@@ -54,6 +55,8 @@
 # define STONE		"./sprites/stone64.png"
 # define ENEMY		"./sprites/enemy64.png"
 # define ENEMY_B	"./sprites/enemy64_b.png"
+# define PERSO_W	"./sprites/perso64_w.png"
+# define PERSO_S	"./sprites/perso64_s.png"
 
 typedef struct s_set
 {
@@ -86,6 +89,8 @@ typedef struct s_texture
 	void	*tex_enemy;
 	void	*tex_enemy_b;
 	void	*tex_collect_b;
+	void	*tex_player_w;
+	void	*tex_player_s;
 }					t_texture;
 
 typedef struct s_img
@@ -100,6 +105,8 @@ typedef struct s_img
 	void	*img_enemy;
 	void	*img_enemy_b;
 	void	*img_exit;
+	void	*img_player_w;
+	void	*img_player_s;
 }					t_img;
 
 typedef struct s_map
@@ -111,7 +118,6 @@ typedef struct s_map
 	int		count;
 	int		line_height;
 	int		line_width;
-	char	**p_map;
 	char	**map;
 }					t_map;
 
@@ -190,5 +196,10 @@ void	ft_star(t_solong *solong);
 void	ft_stone(t_solong *solong);
 void	ft_key_a(t_solong *solong);
 void	ft_key_d(t_solong *solong);
+void	ft_player_w(t_solong *solong);
+void	ft_player_s(t_solong *solong);
+void	ft_key_w(t_solong *solong);
+void	ft_key_s(t_solong *solong);
+void	ft_player(t_solong *solong);
 
 #endif

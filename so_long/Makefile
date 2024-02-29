@@ -27,6 +27,7 @@ SRC_B	=	src/bonus/bonus_main.c		\
 		src/bonus/bonus_animation.c	\
 		src/bonus/bonus_sprites.c	\
 		src/bonus/bonus_path_sup.c	\
+		src/bonus/bonus_sprites_sup.c	\
 
 SRC	=	src/main.c		\
 		src/map.c		\

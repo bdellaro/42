@@ -89,16 +89,12 @@ void	ft_print_key(mlx_key_data_t keydata, void *solong_ptr)
 void	ft_hook(t_solong *solong)
 {
 	char	*how_to;
-	char	*to_quit;
 	char	*beware;
 
-	beware = "Beware of the snakes !";
-	how_to = "Use W, A, S, D to move";
-	to_quit = "Press ESC to quit game";
+	beware = "Beware of aliens !";
+	how_to = "Use W, A, S, D to move, press ESC to quit";
 	mlx_put_string(solong->mlx, beware, solong->window_width \
 	/ 2 - (ft_strlen(beware) * 5), 25);
 	mlx_put_string(solong->mlx, how_to, solong->window_width \
-	/ 2 - (ft_strlen(how_to) * 5), solong->window_height - 40);
-	mlx_put_string(solong->mlx, to_quit, solong->window_width \
-	/ 2 - (ft_strlen(to_quit) * 5), solong->window_height -25);
+	/ 2 - (ft_strlen(how_to) * 5), solong->window_height - 42);
 }

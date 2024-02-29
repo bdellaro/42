@@ -119,7 +119,7 @@ void	ft_player_a(t_solong *solong)
 	}
 }
 
-void	ft_wall(t_solong *solong)
+void	ft_player_w(t_solong *solong)
 {
 	int	x;
 	int	y;
@@ -130,13 +130,13 @@ void	ft_wall(t_solong *solong)
 		x = 0;
 		while (x < solong->width)
 		{
-			if (solong->map.map[y][x] == 'x')
+			if (solong->map.map[y][x] == 'P')
 			{
-				if (solong->img.img_wall != NULL)
+				if (solong->img.img_player_w != NULL)
 				{
 					mlx_image_to_window \
 					(solong->mlx, \
-					solong->img.img_wall, \
+					solong->img.img_player_w, \
 					x * IMG_SIZE, y * IMG_SIZE);
 				}
 			}

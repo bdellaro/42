@@ -17,6 +17,12 @@ void	ft_bonus_texture(t_solong *solong)
 	solong->tex.tex_enemy_b = mlx_load_png(ENEMY_B);
 	solong->tex.tex_collect_b = mlx_load_png(STAR_B);
 	solong->tex.tex_player_a = mlx_load_png(PERSO_A);
+	solong->tex.tex_player_w = mlx_load_png(PERSO_W);
+	solong->tex.tex_player_s = mlx_load_png(PERSO_S);
+	if (!solong->tex.tex_player_w)
+		ft_error_image(PERSO_W);
+	if (!solong->tex.tex_player_s)
+		ft_error_image(PERSO_S);
 	if (!solong->tex.tex_enemy)
 		ft_error_image(ENEMY);
 	if (!solong->tex.tex_enemy_b)
@@ -37,6 +43,14 @@ void	ft_bonus_image(t_solong *solong)
 		(solong->mlx, solong->tex.tex_collect_b);
 	solong->img.img_player_a = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_player_a);
+	solong->img.img_player_w = mlx_texture_to_image \
+		(solong->mlx, solong->tex.tex_player_w);
+	solong->img.img_player_s = mlx_texture_to_image \
+		(solong->mlx, solong->tex.tex_player_s);
+	if (!solong->img.img_player_w)
+		ft_error_image(PERSO_W);
+	if (!solong->img.img_player_s)
+		ft_error_image(PERSO_S);
 	if (!solong->img.img_enemy)
 		ft_error_image(ENEMY);
 	if (!solong->img.img_enemy_b)
@@ -57,6 +71,10 @@ void	ft_bonus_collapse(t_solong *solong)
 		mlx_delete_image(solong->mlx, solong->img.img_collect_b);
 	if (NULL != solong->img.img_player_a)
 		mlx_delete_image(solong->mlx, solong->img.img_player_a);
+	if (NULL != solong->img.img_player_w)
+		mlx_delete_image(solong->mlx, solong->img.img_player_w);
+	if (NULL != solong->img.img_player_s)
+		mlx_delete_image(solong->mlx, solong->img.img_player_s);
 }
 
 int	ft_loose_game(t_solong *solong, char movement)

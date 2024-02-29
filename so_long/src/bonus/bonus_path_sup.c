@@ -22,3 +22,15 @@ void	ft_key_d(t_solong *solong)
 	solong->movement = 'd';
 	solong->map.player_x++;
 }
+
+void	ft_key_w(t_solong *solong)
+{
+	solong->movement = 'w';
+	solong->map.player_y--;
+}
+
+void	ft_key_s(t_solong *solong)
+{
+	solong->movement = 's';
+	solong->map.player_y++;
+}
