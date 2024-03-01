@@ -31,6 +31,7 @@ void	ft_set_clean(t_solong *solong)
 	solong->content.count_p = 0;
 	solong->content.count_e = 0;
 	solong->content.count_c = 0;
+	solong->movement = 'd';
 	solong = NULL;
 }
 
@@ -42,20 +43,13 @@ void	ft_delete_mlx(t_solong *solong)
 	mlx_delete_texture(solong->tex.tex_floor);
 	mlx_delete_texture(solong->tex.tex_collect);
 	mlx_delete_texture(solong->tex.tex_stone);
-	mlx_delete_texture(solong->tex.tex_player_a);
-	mlx_delete_texture(solong->tex.tex_enemy);
-	mlx_delete_texture(solong->tex.tex_enemy_b);
-	mlx_delete_texture(solong->tex.tex_collect_b);
 	mlx_delete_image(solong->mlx, solong->img.img_wall);
 	mlx_delete_image(solong->mlx, solong->img.img_floor);
 	mlx_delete_image(solong->mlx, solong->img.img_player);
 	mlx_delete_image(solong->mlx, solong->img.img_collect);
 	mlx_delete_image(solong->mlx, solong->img.img_exit);
 	mlx_delete_image(solong->mlx, solong->img.img_stone);
-	mlx_delete_image(solong->mlx, solong->img.img_player_a);
-	mlx_delete_image(solong->mlx, solong->img.img_enemy);
-	mlx_delete_image(solong->mlx, solong->img.img_enemy_b);
-	mlx_delete_image(solong->mlx, solong->img.img_collect_b);
+	ft_delete_sup(solong);
 	mlx_close_window(solong->mlx);
 	mlx_terminate(solong->mlx);
 	ft_free_2d(solong->map.map);

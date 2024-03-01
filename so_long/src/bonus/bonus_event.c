@@ -94,7 +94,7 @@ void	ft_hook(t_solong *solong)
 	beware = "Beware of aliens !";
 	how_to = "Use W, A, S, D to move, press ESC to quit";
 	mlx_put_string(solong->mlx, beware, solong->window_width \
-	/ 2 - (ft_strlen(beware) * 5), 25);
+	/ 2 - (ft_strlen(beware) * 5), 0);
 	mlx_put_string(solong->mlx, how_to, solong->window_width \
-	/ 2 - (ft_strlen(how_to) * 5), solong->window_height - 42);
+	/ 2 - (ft_strlen(how_to) * 5), solong->window_height - 20);
 }

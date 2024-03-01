@@ -171,6 +171,7 @@ void	ft_free_solong(t_solong *solong);
 void	ft_hook(t_solong *solong);
 void	ft_solong_init(char *map, t_solong *solong, int arg);
 void	ft_delete_mlx(t_solong *solong);
+void	ft_delete_sup(t_solong *solong);
 void	ft_init_map(t_solong *solong);
 void	ft_map_to_screen(t_solong *solong);
 void	ft_r(void);
@@ -181,7 +182,7 @@ void	ft_free_solong(t_solong *solong);
 void	ft_card_path(t_solong *solong, char movement);
 void	ft_write(t_solong *solong);
 void	ft_set_clean(t_solong *solong);
-void	ft_collect_pot(t_solong *solongi, char movement);
+void	ft_collect_pot(t_solong *solong, char movement);
 void	ft_init_image(t_solong *solong);
 void	ft_content_error(t_solong *solong);
 void	ft_bonus_collapse(t_solong *solong);
@@ -200,6 +201,6 @@ void	ft_player_w(t_solong *solong);
 void	ft_player_s(t_solong *solong);
 void	ft_key_w(t_solong *solong);
 void	ft_key_s(t_solong *solong);
-void	ft_player(t_solong *solong);
+void	ft_exit(t_solong *solong);
 
 #endif

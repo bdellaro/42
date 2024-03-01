@@ -78,6 +78,9 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 		ft_error();
 	ft_init_image(solong);
 	ft_write(solong);
+	ft_wall(solong);
+	ft_stone(solong);
+	ft_exit(solong);
 	ft_dispatch_cards(solong);
 	ft_hook(solong);
 	mlx_key_hook(solong->mlx, &ft_print_key, solong);

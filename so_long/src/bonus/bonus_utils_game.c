@@ -57,3 +57,19 @@ t_solong	*ft_create_solong(void)
 	ft_set_clean(solong);
 	return (solong);
 }
+
+void	ft_delete_sup(t_solong *solong)
+{
+	mlx_delete_texture(solong->tex.tex_player_w);
+	mlx_delete_texture(solong->tex.tex_player_s);
+	mlx_delete_texture(solong->tex.tex_player_a);
+	mlx_delete_texture(solong->tex.tex_enemy);
+	mlx_delete_texture(solong->tex.tex_enemy_b);
+	mlx_delete_texture(solong->tex.tex_collect_b);
+	mlx_delete_image(solong->mlx, solong->img.img_player_a);
+	mlx_delete_image(solong->mlx, solong->img.img_enemy);
+	mlx_delete_image(solong->mlx, solong->img.img_enemy_b);
+	mlx_delete_image(solong->mlx, solong->img.img_collect_b);
+	mlx_delete_image(solong->mlx, solong->img.img_player_w);
+	mlx_delete_image(solong->mlx, solong->img.img_player_s);
+}

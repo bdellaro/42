@@ -71,29 +71,21 @@ void	ft_card_path(t_solong *solong, char movement)
 
 void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 {
-	if (solong->map.map[y][x] == solong->content.wall)
+	if (solong->map.map[y][1] == solong->content.wall)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_wall, width, y * IMG_SIZE);
-	else if (solong->map.map[y][x] == solong->content.floor)
+	if (solong->map.map[y][x] == solong->content.floor)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_floor, width, y * IMG_SIZE);
-	else if (solong->map.map[y][x] == solong->content.player && \
-		solong->movement == 'a')
+	else if (solong->movement == 'a')
 		ft_player_a(solong);
-	else if (solong->map.map[y][x] == solong->content.player && \
-		solong->movement == 'w')
+	else if (solong->movement == 'w')
 		ft_player_w(solong);
-	else if (solong->map.map[y][x] == solong->content.player && \
-		solong->movement == 's')
+	else if (solong->movement == 's')
 		ft_player_s(solong);
-	else if (solong->map.map[y][x] == solong->content.exit)
-		mlx_image_to_window(solong->mlx, \
-		solong->img.img_exit, width, y * IMG_SIZE);
-	else if (solong->map.map[y][x] == solong->content.stone)
-		mlx_image_to_window(solong->mlx, \
-		solong->img.img_stone, width, y * IMG_SIZE);
 	else if (solong->map.map[y][x] == solong->content.player)
-		ft_player(solong);
+		mlx_image_to_window(solong->mlx, \
+		solong->img.img_player, width, y * IMG_SIZE);
 }
 
 int	ft_dispatch_cards(t_solong *solong)

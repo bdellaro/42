@@ -20,10 +20,10 @@ void	ft_string_screen(t_solong *solong)
 	c = ft_itoa(solong->map.count);
 	mlx_put_string(solong->mlx, c, \
 	solong->window_width / 2 + (ft_strlen(str) * 5), \
-	solong->window_height - 35);
+	solong->window_height - 20);
 	mlx_put_string(solong->mlx, str, \
 	solong->window_width / 2 - (ft_strlen(str) * 6), \
-	solong->window_height - 35);
+	solong->window_height - 20);
 }
 
 void	ft_animation_enemy(void *solong_ptr)
