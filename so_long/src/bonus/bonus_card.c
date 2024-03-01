@@ -71,7 +71,7 @@ void	ft_card_path(t_solong *solong, char movement)
 
 void	ft_fill_cards(t_solong *solong, int width, int y, int x)
 {
-	if (solong->map.map[y][1] == solong->content.wall)
+	if (solong->map.map[y][x] == solong->content.wall)
 		mlx_image_to_window(solong->mlx, \
 		solong->img.img_wall, width, y * IMG_SIZE);
 	if (solong->map.map[y][x] == solong->content.floor)
