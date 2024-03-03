@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
-#    Updated: 2024/02/20 12:58:20 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/03/03 14:08:45 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME 		= so_long
@@ -44,7 +44,8 @@ SRC	=	src/main.c		\
 CC 		= cc
 RM		= rm -f
 
-CFLAGS 		= -Wall -Wextra -Werror -g -I./include -O3
+CFLAGS 		= -Wall -Wextra -Werror -g -I./include
+
 CLINKS		= -ldl -lglfw -pthread -lm -Llibft -lft
 
 MLX			= MLX42

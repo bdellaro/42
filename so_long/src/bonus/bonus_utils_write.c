@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/03 19:32:48 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -37,6 +37,8 @@ void	ft_print_map_error(t_solong *solong, int fd)
 	{
 		ft_printf("Error\nEmpty map\n");
 		close(fd);
+		ft_free_solong(solong);
+		free(solong->data_map);
 		exit(EXIT_FAILURE);
 	}
 }

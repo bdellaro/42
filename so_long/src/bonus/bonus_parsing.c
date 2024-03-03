@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:03 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/03 19:34:51 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -30,6 +30,8 @@ void	ft_compare_count_items(t_solong *solong)
 	{
 		ft_printf("Error\nItems uncollectables\n");
 		ft_free_solong(solong);
+		ft_free_visited(solong);
+		free(solong->data_map);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -104,6 +106,8 @@ void	ft_valid_path(t_solong *solong)
 	if (!solong->path_found)
 	{
 		ft_free_visited(solong);
+		ft_free_solong(solong);
+		free(solong->data_map);
 		ft_printf("Error\nNo valid path found\n");
 		exit(EXIT_FAILURE);
 	}

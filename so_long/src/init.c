@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:30:04 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/20 14:02:43 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/03 22:08:40 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -45,15 +45,16 @@ void	ft_struct_image(t_solong *solong)
 	solong->tex.tex_collect = mlx_load_png(STAR);
 	solong->tex.tex_player = mlx_load_png(PERSO);
 	if (!solong->tex.tex_floor)
-		ft_error_image(GRASS);
+		exit(FAILURE);
+//		ft_error_image(GRASS, solong);
 	if (!solong->tex.tex_exit)
-		ft_error_image(EXIT);
+		ft_error_image(EXIT, solong);
 	if (!solong->tex.tex_player)
-		ft_error_image(PERSO);
+		ft_error_image(PERSO, solong);
 	if (!solong->tex.tex_wall)
-		ft_error_image(WALL);
+		ft_error_image(WALL, solong);
 	if (!solong->tex.tex_collect)
-		ft_error_image(STAR);
+		ft_error_image(STAR, solong);
 }
 
 void	ft_solong_init(char *map, t_solong *solong, int arg)
@@ -62,14 +63,14 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	ft_read_map(map, solong);
 	ft_check_content(solong);
 	ft_map_to_2d(solong);
-	ft_struct_image(solong);
+	ft_valid_path(solong);
 	ft_init_player(solong);
 	ft_init_map(solong);
-	ft_valid_path(solong);
 	solong->mlx = mlx_init(solong->window_width, \
 	solong->window_height, solong->name, true);
 	if (arg == 1)
 		free(solong->name);
+	ft_struct_image(solong);
 	if (solong->mlx == NULL)
 		ft_error();
 	ft_init_image(solong);
