@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:21:11 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/14 16:21:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:46:38 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -57,3 +57,20 @@ t_solong	*ft_create_solong(void)
 	ft_set_clean(solong);
 	return (solong);
 }
+
+void	ft_clean(t_solong *solong)
+{
+
+	if (solong->tex.tex_wall)
+		mlx_delete_texture(solong->tex.tex_wall);
+	if (solong->tex.tex_floor)
+		mlx_delete_texture(solong->tex.tex_floor);
+	if (solong->tex.tex_player)
+		mlx_delete_texture(solong->tex.tex_player);
+	if (solong->tex.tex_collect)
+		mlx_delete_texture(solong->tex.tex_collect);
+	if (solong->tex.tex_exit)
+		mlx_delete_texture(solong->tex.tex_exit);
+
+}
+

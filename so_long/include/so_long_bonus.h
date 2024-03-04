@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:19:31 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/29 18:19:37 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:29:18 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_BONUS_H
@@ -177,7 +177,7 @@ void	ft_map_to_screen(t_solong *solong);
 void	ft_r(void);
 void	ft_delete_mlx(t_solong *solong);
 void	ft_error(void);
-void	ft_error_image(char *texture);
+void	ft_error_image(t_solong *solong);
 void	ft_free_solong(t_solong *solong);
 void	ft_card_path(t_solong *solong, char movement);
 void	ft_write(t_solong *solong);
@@ -202,5 +202,7 @@ void	ft_player_s(t_solong *solong);
 void	ft_key_w(t_solong *solong);
 void	ft_key_s(t_solong *solong);
 void	ft_exit(t_solong *solong);
+void	ft_clean(t_solong *solong);
+void	ft_clean_sup(t_solong *solong);
 
 #endif

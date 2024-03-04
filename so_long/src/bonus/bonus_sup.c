@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:09:55 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/29 18:10:07 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:25:03 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -14,23 +14,23 @@
 void	ft_bonus_texture(t_solong *solong)
 {
 	solong->tex.tex_enemy = mlx_load_png(ENEMY);
-	solong->tex.tex_enemy_b = mlx_load_png(ENEMY_B);
-	solong->tex.tex_collect_b = mlx_load_png(STAR_B);
-	solong->tex.tex_player_a = mlx_load_png(PERSO_A);
-	solong->tex.tex_player_w = mlx_load_png(PERSO_W);
-	solong->tex.tex_player_s = mlx_load_png(PERSO_S);
-	if (!solong->tex.tex_player_w)
-		ft_error_image(PERSO_W);
-	if (!solong->tex.tex_player_s)
-		ft_error_image(PERSO_S);
 	if (!solong->tex.tex_enemy)
-		ft_error_image(ENEMY);
+		ft_error_image(solong);
+	solong->tex.tex_enemy_b = mlx_load_png(ENEMY_B);
 	if (!solong->tex.tex_enemy_b)
-		ft_error_image(ENEMY_B);
+		ft_error_image(solong);
+	solong->tex.tex_collect_b = mlx_load_png(STAR_B);
 	if (!solong->tex.tex_collect_b)
-		ft_error_image(STAR_B);
+		ft_error_image(solong);
+	solong->tex.tex_player_a = mlx_load_png(PERSO_A);
 	if (!solong->tex.tex_player_a)
-		ft_error_image(PERSO_A);
+		ft_error_image(solong);
+	solong->tex.tex_player_w = mlx_load_png(PERSO_W);
+	if (!solong->tex.tex_player_w)
+		ft_error_image(solong);
+	solong->tex.tex_player_s = mlx_load_png(PERSO_S);
+	if (!solong->tex.tex_player_s)
+		ft_error_image(solong);
 }
 
 void	ft_bonus_image(t_solong *solong)
@@ -48,17 +48,17 @@ void	ft_bonus_image(t_solong *solong)
 	solong->img.img_player_s = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_player_s);
 	if (!solong->img.img_player_w)
-		ft_error_image(PERSO_W);
+		ft_error_image(solong);
 	if (!solong->img.img_player_s)
-		ft_error_image(PERSO_S);
+		ft_error_image(solong);
 	if (!solong->img.img_enemy)
-		ft_error_image(ENEMY);
+		ft_error_image(solong);
 	if (!solong->img.img_enemy_b)
-		ft_error_image(ENEMY_B);
+		ft_error_image(solong);
 	if (!solong->img.img_collect_b)
-		ft_error_image(STAR_B);
+		ft_error_image(solong);
 	if (!solong->img.img_player_a)
-		ft_error_image(PERSO_A);
+		ft_error_image(solong);
 }
 
 void	ft_bonus_collapse(t_solong *solong)

@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:03 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/03 19:34:51 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:25:01 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -89,10 +89,12 @@ void	ft_valid_path(t_solong *solong)
 	int	y;
 	int	start_x;
 	int	start_y;
+	int	i;
 
 	start_x = 0;
 	start_y = 0;
 	y = 0;
+	i = -1;
 	solong->visited_items = 0;
 	solong->visited = malloc(sizeof(int *) * solong->height);
 	while (y < solong->height)
@@ -108,6 +110,9 @@ void	ft_valid_path(t_solong *solong)
 		ft_free_visited(solong);
 		ft_free_solong(solong);
 		free(solong->data_map);
+		while (solong->map.map[++i])
+                        free(solong->map.map[i]);
+                free(solong->map.map);
 		ft_printf("Error\nNo valid path found\n");
 		exit(EXIT_FAILURE);
 	}

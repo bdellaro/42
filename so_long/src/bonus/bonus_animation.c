@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:09:22 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/03 19:08:04 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:58:13 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -24,7 +24,6 @@ void	ft_string_screen(t_solong *solong)
 	mlx_put_string(solong->mlx, str, \
 	solong->window_width / 2 - (ft_strlen(str) * 6), \
 	solong->window_height - 20);
-//	free(str);
 }
 
 void	ft_animation_enemy(void *solong_ptr)

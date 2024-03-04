@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:30:13 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/03 21:58:31 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:09:11 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -49,17 +49,12 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_error_image(char *texture, t_solong *solong)
+void	ft_error_image(t_solong *solong)
 {
-	(void)solong;
-	ft_printf("Error\nUnable to load texture --> %s\n", texture);
-//	ft_delete_mlx(solong);
-//	mlx_close_window(solong->mlx);
-//	mlx_terminate(solong->mlx);
-	free(solong->data_map);
-//	ft_free_solong(solong);
+	ft_printf("Error\nUnable to load texture\n");
+	mlx_terminate(solong->mlx);
 	ft_free_2d(solong->map.map);
-//	mlx_terminate(solong->mlx);
-//	return ;
+	free(solong->data_map);
+	ft_clean(solong);
 	exit(EXIT_FAILURE);
 }

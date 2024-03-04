@@ -1,4 +1,1 @@
--s
 --suppressions=mlx42.supp
---leak-check=full 
---show-leak-kinds=all

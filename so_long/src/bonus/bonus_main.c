@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:10:53 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:11:53 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -19,7 +19,6 @@ void	ft_first_init(char *path, char *upper, char **argv)
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
 	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
-		solong.name = argv[1];
 		ft_solong_init(path, &solong, 0);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:08 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:59:45 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -72,4 +72,30 @@ void	ft_delete_sup(t_solong *solong)
 	mlx_delete_image(solong->mlx, solong->img.img_collect_b);
 	mlx_delete_image(solong->mlx, solong->img.img_player_w);
 	mlx_delete_image(solong->mlx, solong->img.img_player_s);
+}
+
+void	ft_clean(t_solong *solong)
+{
+	if (solong->tex.tex_wall)
+		mlx_delete_texture(solong->tex.tex_wall);
+	if (solong->tex.tex_floor)
+		mlx_delete_texture(solong->tex.tex_floor);
+	if (solong->tex.tex_player)
+		mlx_delete_texture(solong->tex.tex_player);
+	if (solong->tex.tex_collect)
+		mlx_delete_texture(solong->tex.tex_collect);
+	if (solong->tex.tex_exit)
+		mlx_delete_texture(solong->tex.tex_exit);
+/*	if (solong->tex.tex_enemy)
+		mlx_delete_texture(solong->tex.tex_enemy);
+	if (solong->tex.tex_enemy_b)
+		mlx_delete_texture(solong->tex.tex_enemy_b);
+	if (solong->tex.tex_collect_b)
+		mlx_delete_texture(solong->tex.tex_collect_b);
+	if (solong->tex.tex_player_a)
+		mlx_delete_texture(solong->tex.tex_player_a);
+	if (solong->tex.tex_player_w)
+		mlx_delete_texture(solong->tex.tex_player_w);
+	if (solong->tex.tex_player_s)
+		mlx_delete_texture(solong->tex.tex_player_s);*/
 }

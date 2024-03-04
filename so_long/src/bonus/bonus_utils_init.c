@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:13 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:04:24 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -26,17 +26,17 @@ void	ft_init_image(t_solong *solong)
 	solong->img.img_floor = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_floor);
 	if (!solong->img.img_stone)
-		ft_error_image(STONE);
+		ft_error_image(solong);
 	if (!solong->img.img_floor)
-		ft_error_image(GRASS);
+		ft_error_image(solong);
 	if (!solong->img.img_exit)
-		ft_error_image(EXIT);
+		ft_error_image(solong);
 	if (!solong->img.img_player)
-		ft_error_image(PERSO);
+		ft_error_image(solong);
 	if (!solong->img.img_wall)
-		ft_error_image(WALL);
+		ft_error_image(solong);
 	if (!solong->img.img_collect)
-		ft_error_image(STAR);
+		ft_error_image(solong);
 	ft_bonus_image(solong);
 }
 

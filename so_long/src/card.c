@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:29:58 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/13 14:30:21 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:57:04 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -93,7 +93,7 @@ int	ft_dispatch_cards(t_solong *solong)
 	int		width;
 	int		y;
 	int		x;
-
+	
 	y = 0;
 	x = 0;
 	width = 0;

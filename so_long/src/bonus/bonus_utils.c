@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:22 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:28 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:13:41 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -32,6 +32,10 @@ void	ft_set_clean(t_solong *solong)
 	solong->content.count_e = 0;
 	solong->content.count_c = 0;
 	solong->movement = 'd';
+	solong->img.img_floor = NULL;
+	solong->img.img_wall = NULL;
+	solong->img.img_collect = NULL;
+	solong->img.img_player = NULL;
 	solong = NULL;
 }
 

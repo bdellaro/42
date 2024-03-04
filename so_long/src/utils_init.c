@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:30:11 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/03 20:38:53 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/04 13:34:52 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -24,15 +24,15 @@ void	ft_init_image(t_solong *solong)
 	solong->img.img_floor = mlx_texture_to_image \
 		(solong->mlx, solong->tex.tex_floor);
 	if (!solong->img.img_floor)
-		ft_error_image(GRASS, solong);
+		ft_error_image(solong);
 	if (!solong->img.img_exit)
-		ft_error_image(EXIT, solong);
+		ft_error_image(solong);
 	if (!solong->img.img_player)
-		ft_error_image(PERSO, solong);
+		ft_error_image(solong);
 	if (!solong->img.img_wall)
-		ft_error_image(WALL, solong);
+		ft_error_image(solong);
 	if (!solong->img.img_collect)
-		ft_error_image(STAR, solong);
+		ft_error_image(solong);
 }
 
 void	ft_init_map(t_solong *solong)
