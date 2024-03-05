@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:29:43 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 13:11:11 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:50:43 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -153,5 +153,7 @@ void	ft_collect_pot(t_solong *solong, char movement);
 void	ft_init_image(t_solong *solong);
 void	ft_content_error(t_solong *solong);
 void	ft_clean(t_solong *solong);
+void	ft_free_path(t_solong *solong);
+void	ft_free_visited(t_solong *solong);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
-#    Updated: 2024/03/04 16:26:13 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/03/05 11:46:21 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME 		= so_long
@@ -29,6 +29,7 @@ SRC_B	=	src/bonus/bonus_main.c		\
 		src/bonus/bonus_path_sup.c	\
 		src/bonus/bonus_sprites_sup.c	\
 		src/bonus/bonus_clean.c		\
+		src/bonus/bonus_free.c		\
 
 SRC	=	src/main.c		\
 		src/map.c		\
@@ -41,6 +42,7 @@ SRC	=	src/main.c		\
 		src/utils_init.c	\
 		src/utils_game.c	\
 		src/parsing.c		\
+		src/free.c		\
 
 CC 		= cc
 RM		= rm -f

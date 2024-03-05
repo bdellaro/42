@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:19:31 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 16:29:18 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:50:55 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_BONUS_H
@@ -204,5 +204,7 @@ void	ft_key_s(t_solong *solong);
 void	ft_exit(t_solong *solong);
 void	ft_clean(t_solong *solong);
 void	ft_clean_sup(t_solong *solong);
+void	ft_free_path(t_solong *solong);
+void	ft_free_visited(t_solong *solong);
 
 #endif

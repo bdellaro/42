@@ -6,13 +6,16 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:09:55 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 16:25:03 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:30:12 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
 
 void	ft_bonus_texture(t_solong *solong)
 {
+	solong->tex.tex_stone = mlx_load_png(STONE);
+	if (!solong->tex.tex_stone)
+		ft_error_image(solong);
 	solong->tex.tex_enemy = mlx_load_png(ENEMY);
 	if (!solong->tex.tex_enemy)
 		ft_error_image(solong);

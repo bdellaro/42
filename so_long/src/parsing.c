@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:18:14 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 17:23:27 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:23:32 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -26,12 +26,16 @@ void	ft_free_visited(t_solong *solong)
 
 void	ft_compare_count_items(t_solong *solong)
 {
+	int	i;
+
+	i = -1;
 	if (solong->content.count_c != solong->visited_items)
 	{
 		ft_printf("Error\nItems uncollectables\n");
-		ft_free_solong(solong);
-		ft_free_visited(solong);
 		free(solong->data_map);
+		while (solong->map.map[++i])
+			free(solong->map.map[i]);
+		free(solong->map.map);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -87,12 +91,10 @@ void	ft_valid_path(t_solong *solong)
 	int	y;
 	int	start_x;
 	int	start_y;
-	int	i;
 
 	start_x = 0;
 	start_y = 0;
 	y = 0;
-	i = -1;
 	solong->visited_items = 0;
 	solong->visited = malloc(sizeof(int *) * solong->height);
 	while (y < solong->height)
@@ -105,14 +107,8 @@ void	ft_valid_path(t_solong *solong)
 	ft_visit(solong, start_y, start_x, solong->visited);
 	if (!solong->path_found)
 	{
-		ft_free_visited(solong);
-		ft_free_solong(solong);
-		free(solong->data_map);
-		while (solong->map.map[++i])
-			free(solong->map.map[i]);
-		free(solong->map.map);
 		ft_printf("Error\nNo valid path found\n");
-		exit(EXIT_FAILURE);
+		ft_free_path(solong);
 	}
 	ft_free_visited(solong);
 	ft_compare_count_items(solong);

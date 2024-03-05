@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:11:08 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 16:59:45 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:22:04 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -31,31 +31,6 @@ void	ft_free_2d(char **map)
 	free(map);
 	map = NULL;
 	return ;
-}
-
-void	ft_free_array(mlx_image_t **arr, t_solong *solong)
-{
-	while (arr)
-	{
-		free(arr);
-		arr++;
-	}
-	ft_free_2d(solong->map.map);
-	return ;
-}
-
-t_solong	*ft_create_solong(void)
-{
-	t_solong	*solong;
-
-	solong = (t_solong *)malloc(sizeof(t_solong));
-	if (solong == NULL)
-	{
-		ft_printf("Error\nAllocation failed for solong\n");
-		exit(EXIT_FAILURE);
-	}
-	ft_set_clean(solong);
-	return (solong);
 }
 
 void	ft_delete_sup(t_solong *solong)
@@ -86,7 +61,9 @@ void	ft_clean(t_solong *solong)
 		mlx_delete_texture(solong->tex.tex_collect);
 	if (solong->tex.tex_exit)
 		mlx_delete_texture(solong->tex.tex_exit);
-/*	if (solong->tex.tex_enemy)
+	if (solong->tex.tex_stone)
+		mlx_delete_texture(solong->tex.tex_stone);
+	if (solong->tex.tex_enemy)
 		mlx_delete_texture(solong->tex.tex_enemy);
 	if (solong->tex.tex_enemy_b)
 		mlx_delete_texture(solong->tex.tex_enemy_b);
@@ -97,5 +74,5 @@ void	ft_clean(t_solong *solong)
 	if (solong->tex.tex_player_w)
 		mlx_delete_texture(solong->tex.tex_player_w);
 	if (solong->tex.tex_player_s)
-		mlx_delete_texture(solong->tex.tex_player_s);*/
+		mlx_delete_texture(solong->tex.tex_player_s);
 }

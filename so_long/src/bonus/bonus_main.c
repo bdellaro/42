@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:10:53 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 18:11:53 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:22:02 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -17,7 +17,8 @@ void	ft_first_init(char *path, char *upper, char **argv)
 
 	solong.name = upper;
 	ft_printf("Map chosen : \033[1;35m%s\033[0m\n\n", upper);
-	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	if (ft_strnstr(argv[1], "maps/", 6)
+		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
 		ft_solong_init(path, &solong, 0);
 	}
@@ -29,7 +30,7 @@ void	ft_error_print(char **argv)
 {
 	ft_printf("Invalid map name.\n");
 	ft_printf("Please enter :\n====>   \033[1;35m%s", argv[0]);
-	ft_printf("\033[0m and \033[1;35m./maps/*.ber\033[0m\n");
+	ft_printf("\033[0m and \033[1;35m  maps/*.ber\033[0m\n");
 	ft_printf("Or chose between :\n", argv[0]);
 	ft_printf("====>	\033[1;35m%s\033[0m and -> ", argv[0]);
 	ft_printf("\033[1;35mSmall\033[0m", argv[0]);
@@ -63,7 +64,8 @@ void	ft_map_check(char **argv)
 {
 	char	*upper;
 
-	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	if (ft_strnstr(argv[1], "maps/", 6)
+		&& ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		ft_first_init(argv[1], "USER MAP", argv);
 	upper = ft_upper(argv[1]);
 	if ((!ft_strncmp(upper, "SMALL", 5))

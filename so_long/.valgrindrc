@@ -1,1 +1,2 @@
---suppressions=mlx42.supp
+--suppressions=MLX42/mlx42.supp
+--leak-check=full

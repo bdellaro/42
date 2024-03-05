@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:30:04 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 17:35:04 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:26:03 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long.h"
@@ -46,18 +46,18 @@ void	ft_struct_image(t_solong *solong)
 	solong->tex.tex_exit = NULL;
 	solong->tex.tex_wall = mlx_load_png(WALL);
 	if (!solong->tex.tex_wall)
-		ft_error_image(solong);	
+		ft_error_image(solong);
 	solong->tex.tex_floor = mlx_load_png(GRASS);
 	if (!solong->tex.tex_floor)
+		ft_error_image(solong);
+	solong->tex.tex_player = mlx_load_png(PERSO);
+	if (!solong->tex.tex_player)
 		ft_error_image(solong);
 	solong->tex.tex_exit = mlx_load_png(EXIT);
 	if (!solong->tex.tex_exit)
 		ft_error_image(solong);
 	solong->tex.tex_collect = mlx_load_png(STAR);
 	if (!solong->tex.tex_collect)
-		ft_error_image(solong);
-	solong->tex.tex_player = mlx_load_png(PERSO);
-	if (!solong->tex.tex_player)
 		ft_error_image(solong);
 }
 
@@ -73,7 +73,7 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	if (arg == 1)
 		free(solong->name);
 	solong->mlx = mlx_init(solong->window_width, \
-	solong->window_height, solong->name, true);
+	solong->window_height, "SO_LONG 42", true);
 	if (solong->mlx == NULL)
 		ft_error();
 	ft_struct_image(solong);

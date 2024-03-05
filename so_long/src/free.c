@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 13:46:33 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/03/05 11:44:12 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/03/05 12:24:42 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../include/so_long.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+void	ft_free_path(t_solong *solong)
+{
+	int	i;
 
-# include "../libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-size_t	ft_strlen_gnl(char *str);
-char	*ft_strndup_gnl(char *str, int len);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-//char	*get_next_line(int fd);
-
-#endif
+	i = -1;
+	ft_free_visited(solong);
+	ft_free_solong(solong);
+	free(solong->data_map);
+	while (solong->map.map[++i])
+		free(solong->map.map[i]);
+	free(solong->map.map);
+	exit(EXIT_FAILURE);
+}

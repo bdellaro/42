@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:10:46 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/04 18:06:52 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:30:22 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -39,15 +39,16 @@ void	ft_init_player(t_solong *solong)
 
 void	ft_struct_image(t_solong *solong)
 {
-        solong->tex.tex_wall = NULL;
-        solong->tex.tex_floor = NULL;
-        solong->tex.tex_player = NULL;
-        solong->tex.tex_collect = NULL;
-        solong->tex.tex_exit = NULL;	
-//	ft_clean_sup(solong);
+	solong->tex.tex_wall = NULL;
+	solong->tex.tex_floor = NULL;
+	solong->tex.tex_player = NULL;
+	solong->tex.tex_collect = NULL;
+	solong->tex.tex_exit = NULL;
+	solong->tex.tex_stone = NULL;
+	ft_clean_sup(solong);
 	solong->tex.tex_wall = mlx_load_png(WALL);
 	if (!solong->tex.tex_wall)
-		ft_error_image(solong);	
+		ft_error_image(solong);
 	solong->tex.tex_floor = mlx_load_png(GRASS);
 	if (!solong->tex.tex_floor)
 		ft_error_image(solong);
@@ -60,7 +61,7 @@ void	ft_struct_image(t_solong *solong)
 	solong->tex.tex_exit = mlx_load_png(EXIT);
 	if (!solong->tex.tex_exit)
 		ft_error_image(solong);
-//	ft_bonus_texture(solong);
+	ft_bonus_texture(solong);
 }
 
 void	ft_solong_init(char *map, t_solong *solong, int arg)
@@ -75,7 +76,7 @@ void	ft_solong_init(char *map, t_solong *solong, int arg)
 	if (arg == 1)
 		free(solong->name);
 	solong->mlx = mlx_init(solong->window_width, \
-	solong->window_height, solong->name, true);
+	solong->window_height, "SO_LONG 42", true);
 	if (solong->mlx == NULL)
 		ft_error();
 	ft_struct_image(solong);

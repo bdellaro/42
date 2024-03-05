@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:10:32 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/02/28 14:14:20 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:34:51 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -111,10 +111,10 @@ int	ft_check_content(t_solong *solong)
 	}
 	ft_content_error(solong);
 	map_check = ft_check_error_map(solong->data_map, &solong->content, solong);
-	if (solong->width <= 6 || solong->height < 4)
+	if (solong->width <= 6)
 	{
 		ft_printf("Error\nMap too small\n");
-		free(solong->data_map);
+		ft_free_solong(solong);
 		exit(EXIT_FAILURE);
 	}
 	if (map_check == 0)
