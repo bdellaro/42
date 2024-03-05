@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 08:42:05 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/23 18:38:29 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+char	*ft_strrchr(const char *str, int c)
+{
+	int	i;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+	{
+		if (str[i] == (char)c)
+			return ((char *)(str + i));
+		i--;
+	}
+	return (0);
+}
+/*int	main()
+{
+	const char str[] = "Pourquoi pias";
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	printf("%s\n", ft_strrchr(str, 105));
+	return (0);
+}*/

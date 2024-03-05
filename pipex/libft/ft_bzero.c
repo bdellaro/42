@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 13:16:08 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/20 13:16:50 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+void	ft_bzero(void *str, size_t n)
+{
+	ft_memset(str, 0, n);
+	return ;
+}
+/*int	main()
+{
+	char	str[] = "Testicule gauche";
+	ft_bzero(str, 2);
+	return (0);
+}*/

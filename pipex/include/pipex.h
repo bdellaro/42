@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/03/05 15:24:31 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/03/05 15:24:39 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef PIPEX_H
+# define PIPEX_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-# include <stdio.h>
+# include "../libft/libft.h"
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+typedef struct s_pipex
+{
+	int				**visited;
+	int				line_length;
+	char			*name;
+	char			*addr;
+}					t_pipex;
 
 #endif

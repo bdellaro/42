@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/11/09 10:07:14 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/01/12 15:57:36 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdio.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
+# include <stdarg.h>
+# include "../libft.h"
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+int		ft_printf(const char *str, ...);
+int		ft_print_nbr(int n);
+int		ft_print_str(char *c);
+int		ft_print_char(char c);
+int		ft_print_hexa(unsigned int num, const char format);
+int		ft_print_ptr(unsigned char *ptr);
+int		ft_print_unsigned(unsigned int n);
+int		ft_print_percent(void);
 
 #endif

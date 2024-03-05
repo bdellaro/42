@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
-#    Updated: 2024/03/05 11:46:21 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/03/05 16:48:27 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME 		= so_long
@@ -63,13 +63,13 @@ bonus:	$(NAME_B)
 $(NAME_B): $(LIBMLX) $(OBJ_B)
 	cd libft;make
 	$(CC) $(CFLAGS) -o $(NAME_B) $(OBJ_B) $(LIBMLX) $(CLINKS)
-	@echo "\033[1;32m[MAKE SO_LONG_BONUS OK]\033[0m"
+	@echo "\033[1;32m[SO_LONG_BONUS OK]\033[0m"
 
 
 $(NAME): $(LIBMLX) $(OBJ)
 	cd libft;make
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
-	@echo "\033[1;32m[MAKE SO_LONG OK]\033[0m"
+	@echo "\033[1;32m[SO_LONG OK]\033[0m"
 
 $(LIBMLX):
 	cmake $(MLX) -B $(MLX)
@@ -92,7 +92,7 @@ fclean: clean
 	$(RM) $(LIBMLX)
 	cd libft;make fclean
 	$(RM) $(NAME) $(NAME_B)
-	@echo "\033[1;32m[FCLEAN OK, FOLDERS CLEARED]\033[0m"
+	@echo "\033[1;32m[FCLEAN OK]\033[0m"
 
 clear: fclean
 	$(RM) -r $(MLX) 

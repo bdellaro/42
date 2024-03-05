@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 12:59:50 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/20 12:59:52 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+void	*ft_memset(void *str, int c, size_t n)
+{
+	size_t		i;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)str)[i] = c;
+		i++;
+	}
+	return (str);
+}
+/*int	main()
+{
+	char str[] = "Je devrais faire une pause";
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+	printf("\n%s\n\n", str);
+	printf("Avec memset(str, '>', 10) :\n\n");
 
-#endif
+	ft_memset(str, '>', 10);
+
+	printf("%s\n\n", str);
+
+	return (0);
+}*/

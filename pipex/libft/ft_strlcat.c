@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 13:30:28 by bdellaro          #+#    #+#             */
-/*   Updated: 2023/10/24 15:18:50 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 08:24:35 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/23 18:02:44 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
 	size_t	i;
 	size_t	j;
-	size_t	k;
-	char	*s3;
 
-	i = 0;
+	i = ft_strlen(dest);
 	j = 0;
-	k = ft_strlen(s1) + ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (k + 1));
-	if (!s3 || !s1 || !s2)
-		return (NULL);
-	while (s1[i])
+	if (n <= ft_strlen(dest))
+		return (n + ft_strlen(src));
+	while (src[j] && i < n - 1)
 	{
-		s3[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		s3[i] = s2[j];
+		dest[i] = src[j];
 		i++;
 		j++;
 	}
-	s3[k] = 0;
-	return (s3);
+	dest[i] = 0;
+	return (ft_strlen(dest) + ft_strlen(&src[j]));
 }
-/*int	main(void)
+/*int	main()
 {
-	char	s1[] = "Test";
-	char	s2[] = "icule";
-
-	printf("Retour s3 : %s", ft_strjoin(s1, s2));
+	char dest[] = "Test";
+	char src[] = "icule";
+	printf("%ld\n", ft_strlcat(dest, src, 2));
 	return (0);
 }*/

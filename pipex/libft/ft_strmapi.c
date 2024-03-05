@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/24 13:30:35 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/31 10:01:38 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <stdio.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	size_t	i;
+	char	*s2;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+	i = 0;
+	s2 = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s2)
+		return (NULL);
+	while (s[i])
+	{
+		s2[i] = (*f)(i, s[i]);
+		i++;
+	}
+	s2[i] = 0;
+	return (s2);
+}
+/*int     main()
+{
+	char const *s = "Hey dude";
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	printf("%s", ft_strmapi(s));
+        return (0);
+}*/

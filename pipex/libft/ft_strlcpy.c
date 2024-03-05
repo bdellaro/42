@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 08:24:29 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/23 18:37:12 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+size_t	ft_strlcpy(char *dest, const char *src, size_t n)
+{
+	size_t	i;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+	i = 0;
+	while (src[i] && i + 1 < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (n > 0)
+	{
+		dest[i] = 0;
+		i++;
+	}
+	return (ft_strlen(src));
+}
+/*int	main()
+{
+	char dest[2];
+	const char src[] = "Croissinou";
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	printf("Taille retour ft_ : %ld\n", ft_strlcpy(dest, src, 5));
+	return (0);
+}*/

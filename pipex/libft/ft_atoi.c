@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/17 16:51:20 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/25 09:54:23 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	nbr;
+	int	sign;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	i = 0;
+	nbr = 0;
+	sign = 0;
+	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32)))
+		i++;
+	if (str[i] && str[i] == '-')
+	{
+		sign++;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		nbr = (nbr * 10) + (str[i] - 48);
+		i++;
+	}
+	if (sign % 2)
+		return (-nbr);
+	return (nbr);
+}

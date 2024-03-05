@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 11:27:25 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:09:07 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/20 11:57:23 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/24 13:03:45 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+char	*ft_strdup(const char *str)
+{
+	char	*str2;
+	size_t	n;
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+	n = 0;
+	str2 = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!str2)
+		return (NULL);
+	while (str[n])
+	{
+		str2[n] = str[n];
+		n++;
+	}
+	str2[n] = 0;
+	return (str2);
+}
+/*int	main()
+{
+	const char str[] = "Encore un test";
 
-size_t	ft_strlen(char *str);
-char	*ft_strndup(char *str, int len);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	printf("%s\n", ft_strdup(str));
+	return (0);
+}*/

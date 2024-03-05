@@ -1,49 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 13:30:28 by bdellaro          #+#    #+#             */
-/*   Updated: 2023/10/24 15:18:50 by bdellaro         ###   ########.fr       */
+/*   Created: 2023/10/24 13:30:52 by bdellaro          #+#    #+#             */
+/*   Updated: 2023/10/31 13:17:50 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	size_t	k;
-	char	*s3;
+	char	*s2;
 
+	if (start >= ft_strlen(s))
+		len = 0;
+	else if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
 	i = 0;
 	j = 0;
-	k = ft_strlen(s1) + ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (k + 1));
-	if (!s3 || !s1 || !s2)
+	s2 = malloc(sizeof(char) * (len + 1));
+	if (!s2)
 		return (NULL);
-	while (s1[i])
+	while (s[i])
 	{
-		s3[i] = s1[i];
+		if (i >= start && j < len)
+		{
+			s2[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	while (s2[j])
-	{
-		s3[i] = s2[j];
-		i++;
-		j++;
-	}
-	s3[k] = 0;
-	return (s3);
+	s2[j] = 0;
+	return (s2);
 }
-/*int	main(void)
+/*
+int	main()
 {
-	char	s1[] = "Test";
-	char	s2[] = "icule";
+	char const s[] = "Tesq Tesw Tesr Test Tesy";
 
-	printf("Retour s3 : %s", ft_strjoin(s1, s2));
+	printf("Returned string = %s", ft_substr(s, 15, 4));
 	return (0);
 }*/
