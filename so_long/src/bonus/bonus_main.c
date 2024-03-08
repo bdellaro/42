@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:10:53 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 16:55:40 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/03/08 09:32:14 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/so_long_bonus.h"
@@ -34,8 +34,8 @@ void	ft_error_print(char **argv)
 	ft_printf("Or chose between :\n", argv[0]);
 	ft_printf("====>	\033[1;35m%s\033[0m and -> ", argv[0]);
 	ft_printf("\033[1;35mSmall\033[0m", argv[0]);
-	ft_printf("\n                \t\t-> \033[1;35mBig\033[0m");
-	ft_printf("\n                \t\t-> \033[1;35mMedium\033[0m\n");
+	ft_printf("\n             \t       \t-> \033[1;35mBig\033[0m");
+	ft_printf("\n             \t       \t-> \033[1;35mMedium\033[0m\n");
 }
 
 char	*ft_upper(char *argv)
