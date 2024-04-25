@@ -1,0 +1,9 @@
+total 40
+drwxrwxr-x 2 baptiste baptiste  4096 avril 25 15:11 include
+-rw-rw-r-- 1 baptiste baptiste     0 avril 25 15:18 infile
+drwxrwxr-x 4 baptiste baptiste  4096 avril 25 15:14 libft
+-rw-rw-r-- 1 baptiste baptiste  1765 avril 24 14:18 Makefile
+-rw-rw-r-- 1 baptiste baptiste     0 avril 25 15:18 outfile
+-rwxrwxr-x 1 baptiste baptiste 21560 avril 25 15:14 pipex
+drwxrwxr-x 3 baptiste baptiste  4096 avril 25 15:14 src
+-rwxrwxr-x 1 baptiste baptiste     0 avril 25 15:09 tadow
