@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:20:14 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/01/12 15:54:35 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:01:19 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -15,6 +15,18 @@
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+
+typedef struct s_list
+{
+	int				index;
+	int				push_cost;
+	struct s_list	*target_node;
+	struct s_list	*next;
+	bool			above_median;
+	bool			cheapest;
+	void			*content;
+}				t_list;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -26,6 +38,17 @@ int		ft_tolower(int c);
 int		ft_atoi(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_free_array(char **array);
+int		ft_lstsize(t_list *lst);
+long	ft_atol(const char *str);
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);

@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:35 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/03/05 16:11:52 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:10:54 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
@@ -20,9 +20,15 @@ void	ft_exit(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_error(void)
+void	ft_error(char *str)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error.", 2);
+	if (str)
+	{
+		ft_putstr_fd(" ", 2);
+		ft_putstr_fd(str, 2);
+	}
+	ft_putstr_fd("\n", 2);
 	exit(EXIT_FAILURE);
 }
 
