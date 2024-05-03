@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:35 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 17:10:54 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:56:23 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
@@ -14,9 +14,9 @@
 void	ft_exit(void)
 {
 	ft_putstr_fd("4 arguments needed :\n", 2);
-	ft_putstr_fd("    ./pipex \033[1;35minfile\033[0m \
-\033[1;37mcmd1\033[0m \033[1;37mcmd2\033[0m \
-\033[1;35moutfile\033[0m\n", 2);
+	ft_putstr_fd("    ./pipex \033[1;35minfile\033[0m ", 2);
+	ft_putstr_fd("\033[1;37mcmd1\033[0m \033[1;37mcmd2\033[0m ", 2);
+	ft_putstr_fd("\033[1;35moutfile\033[0m\n", 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -29,7 +29,7 @@ void	ft_error(char *str)
 		ft_putstr_fd(str, 2);
 	}
 	ft_putstr_fd("\n", 2);
-	exit(EXIT_FAILURE);
+	exit (EXIT_FAILURE);
 }
 
 int	ft_free_array(char **array)
@@ -72,24 +72,18 @@ char	*ft_get_path(char *cmd, char **envp)
 	char	*exec;
 	char	**all_path;
 	char	*part_path;
-	char	**s_cmd;
 
 	i = -1;
 	all_path = ft_split(ft_get_envp("PATH", envp), ':');
-	s_cmd = ft_split(cmd, ' ');
 	while (all_path[++i])
 	{
 		part_path = ft_strjoin(all_path[i], "/");
-		exec = ft_strjoin(part_path, s_cmd[0]);
+		exec = ft_strjoin(part_path, cmd);
 		free(part_path);
 		if (access(exec, F_OK | X_OK) == 0)
-		{
-			ft_free_array(s_cmd);
 			return (exec);
-		}
 		free(exec);
 	}
 	ft_free_array(all_path);
-	ft_free_array(s_cmd);
 	return (0);
 }

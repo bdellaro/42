@@ -13,8 +13,9 @@ void	ft_putnbr(int nbr)
 
 int	ft_atoi(char *str)
 {
-	int		nbr = 0;
-
+	int	nbr 
+		
+	nbr = 0;
 	while (*str)
 		nbr = nbr * 10 + *str++ - '0';
 	return (nbr);

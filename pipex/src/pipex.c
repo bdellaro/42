@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 17:17:58 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:30:34 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
@@ -58,7 +58,9 @@ int	ft_child_process(char **argv, char **envp, int *pipe_fd)
 
 	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
+	{
 		ft_error("Cannot open infile");
+	}
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
 	close(pipe_fd[0]);
@@ -73,6 +75,8 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc == 5)
 	{
+		if (argv[2][0] == 0 || argv[3][0] == 0)
+			ft_error("Invalid command");
 		if (pipe(pipe_fd) == -1)
 			ft_error("Cannot open file descriptor");
 		pid = fork();
