@@ -6,10 +6,18 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/03 14:30:34 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:15:49 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
+
+void	ft_wait_and_close(int *pipe_fd, int *pid)
+{
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	waitpid(pid[0], NULL, 0);
+	waitpid(pid[1], NULL, 0);
+}
 
 int	ft_execute_cmd(char *argv, char **envp)
 {
@@ -38,7 +46,7 @@ int	ft_execute_cmd(char *argv, char **envp)
 	return (0);
 }
 
-int	ft_parent_process(char **argv, char **envp, int *pipe_fd)
+int	ft_command_two(char **argv, char **envp, int *pipe_fd)
 {
 	int	outfile;
 
@@ -52,7 +60,7 @@ int	ft_parent_process(char **argv, char **envp, int *pipe_fd)
 	return (0);
 }
 
-int	ft_child_process(char **argv, char **envp, int *pipe_fd)
+int	ft_command_one(char **argv, char **envp, int *pipe_fd)
 {
 	int	infile;
 
@@ -71,7 +79,7 @@ int	ft_child_process(char **argv, char **envp, int *pipe_fd)
 int	main(int argc, char **argv, char **envp)
 {
 	int	pipe_fd[2];
-	int	pid;
+	int	pid[2];
 
 	if (argc == 5)
 	{
@@ -79,13 +87,17 @@ int	main(int argc, char **argv, char **envp)
 			ft_error("Invalid command");
 		if (pipe(pipe_fd) == -1)
 			ft_error("Cannot open file descriptor");
-		pid = fork();
-		if (pid == -1)
-			ft_error("Unable to fork program");
-		if (pid == 0)
-			ft_child_process(argv, envp, pipe_fd);
-		waitpid(pid, NULL, 0);
-		ft_parent_process(argv, envp, pipe_fd);
+		pid[0] = fork();
+		if (pid[0] == -1)
+			ft_error("Unable to fork the first command");
+		if (pid[0] == 0)
+			ft_command_one(argv, envp, pipe_fd);
+		pid[1] = fork();
+		if (pid[1] == -1)
+			ft_error("Unable to fork the second command");
+		if (pid[1] == 0)
+			ft_command_two(argv, envp, pipe_fd);
+		ft_wait_and_close(pipe_fd, pid);
 	}
 	else
 		ft_exit();
