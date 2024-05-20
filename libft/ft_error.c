@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 12:05:21 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:25 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/05/07 14:07:40 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/05/07 14:07:49 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long	ft_atol(const char *str)
+void	ft_error(char *str)
 {
-	long	result;
-	int		sign;
-	int		i;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	ft_putstr_fd("Error.", 2);
+	if (str)
 	{
-		sign = -1;
-		i++;
+		ft_putstr_fd(" ", 2);
+		ft_putstr_fd(str, 2);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+	ft_putstr_fd("\n", 2);
+	exit (EXIT_FAILURE);
 }

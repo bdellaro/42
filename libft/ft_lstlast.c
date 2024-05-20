@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_array.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:55:38 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/20 13:05:43 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/04/30 10:33:58 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/04/30 10:34:27 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_free_array(char **array)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int	i;
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+/*
+int     main(void)
+{
+	t_list  *lst;
+	t_list  *new_lst;
+	t_list  *new_lst2;
 
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free(array);
+	lst = ft_lstnew("third");
+	new_lst = ft_lstnew("second");
+	new_lst2 = ft_lstnew("first");
+	ft_lstadd_front(&lst, new_lst);
+	ft_lstadd_front(&lst, new_lst2);
+	ft_printf("le dernier element est %s\n", (char *)ft_lstlast(lst)->content);
 	return (0);
 }
+*/

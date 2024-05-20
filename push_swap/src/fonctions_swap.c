@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   fonctions_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 09:41:56 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/20 15:40:21 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/05/20 15:38:33 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/05/20 15:40:11 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_swap(t_list **stack)
 {
-	t_stack	stack;
+	t_list	*tmp;
 
-	if (argc <= 1)
-		return (0);
-	stack.a = NULL;
-	stack.b = NULL;
-	if (!ft_parse_args(argc, argv, &stack, &argv))
+	if (*stack && (*stack)->next)
 	{
-		ft_free_all(&stack, argv, argc, 1);
-		return (1);
+		tmp = (*stack)->next;
+		(*stack)->next = tmp->next;
+		tmp->next = *stack;
+		*stack = tmp;
 	}
-	if (!ft_check_duplicate(&stack))
-	{
-		ft_free_all(&stack, argv, argc, 1);
-		return (1);
-	}
-	ft_sort_stack(&stack);
-	ft_free_all(&stack, argv, argc, 0);
-	return (0);
+}
+
+void	ft_sa(t_stack *stack)
+{
+	ft_swap(&stack->a);
+	ft_printf("sa\n");
+}
+
+void	ft_sb(t_stack *stack)
+{
+	ft_swap(&stack->b);
+	ft_printf("sb\n");
+}
+
+void	ft_ss(t_stack *stack)
+{
+	ft_swap(&stack->a);
+	ft_swap(&stack->b);
+	ft_printf("ss\n");
 }

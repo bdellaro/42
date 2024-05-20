@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 12:05:21 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:25 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/04/30 10:35:20 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/04/30 10:35:30 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long	ft_atol(const char *str)
+t_list	*ft_lstnew(void *content)
 {
-	long	result;
-	int		sign;
-	int		i;
+	t_list	*new;
 
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	new->index = 0;
+	new->push_cost = 0;
+	new->above_median = false;
+	new->cheapest = false;
+	new->target_node = NULL;
+	return (new);
 }
+/*
+int	main(void)
+{
+	char	*str;
+	t_list	*list;
+
+	str = "bonjour";
+	list = ft_lstnew(str);
+	printf("%s\n", (char *)list->content);
+	return (0);
+}
+*/

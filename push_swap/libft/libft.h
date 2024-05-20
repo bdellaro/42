@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 13:20:14 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 12:05:08 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:01:19 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -19,13 +19,13 @@
 
 typedef struct s_list
 {
-	int		index;
-	int		push_cost;
-	bool		above_median;
-	bool		cheapest;
-	void		*content;
+	int				index;
+	int				push_cost;
 	struct s_list	*target_node;
 	struct s_list	*next;
+	bool			above_median;
+	bool			cheapest;
+	void			*content;
 }				t_list;
 
 int		ft_isalpha(int c);
@@ -40,7 +40,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_free_array(char **array);
 int		ft_lstsize(t_list *lst);
-long		ft_atol(const char *str);
+long	ft_atol(const char *str);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));

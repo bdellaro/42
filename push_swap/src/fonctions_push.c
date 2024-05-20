@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   fonctions_push.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 12:05:21 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:25 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/05/20 15:38:23 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/05/20 15:40:03 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/push_swap.h"
 
-long	ft_atol(const char *str)
+void	ft_push(t_list **src, t_list **dest)
 {
-	long	result;
-	int		sign;
-	int		i;
+	t_list	*first;
 
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	if (*src)
 	{
-		sign = -1;
-		i++;
+		first = *src;
+		*src = (*src)->next;
+		first->next = *dest;
+		*dest = first;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+}
+
+void	ft_pa(t_stack *stack)
+{
+	ft_push(&stack->b, &stack->a);
+	ft_printf("pa\n");
+}
+
+void	ft_pb(t_stack *stack)
+{
+	ft_push(&stack->a, &stack->b);
+	ft_printf("pb\n");
 }

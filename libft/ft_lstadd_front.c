@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 12:05:21 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:25 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/04/30 10:31:25 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/04/30 10:31:37 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long	ft_atol(const char *str)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	long	result;
-	int		sign;
-	int		i;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
+/*
+int     main(void)
+{
+	t_list  *lst;
+	t_list  *new_lst;
+
+	lst = ft_lstnew("second");
+	new_lst = ft_lstnew("first");
+	ft_lstadd_front(&lst, new_lst);
+	printf("Le premier element est %s\n", (char *)lst->content);
+	printf("Le deuxieme element est %s\n", (char *)lst->next->content);
+	return (0);
+}
+*/

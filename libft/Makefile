@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:39:37 by bdellaro          #+#    #+#              #
-#    Updated: 2024/01/16 18:21:14 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/04/30 11:59:58 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME =		libft.a
@@ -46,6 +46,19 @@ SRC =		ft_atoi.c	\
 		ft_strtrim.c	\
 		ft_itoa.c	\
 		ft_split.c	\
+		ft_lstadd_back.c	\
+		ft_lstadd_front.c	\
+		ft_lstclear.c		\
+		ft_lstdelone.c		\
+		ft_lstiter.c		\
+		ft_lstlast.c		\
+		ft_lstmap.c		\
+		ft_lstnew.c		\
+		ft_lstsize.c		\
+		ft_free_array.c		\
+		ft_utils.c		\
+		ft_error.c		\
+		ft_exit.c		\
 		ft_printf/ft_print_char.c	\
 		ft_printf/ft_printf.c		\
 		ft_printf/ft_print_hexa.c	\

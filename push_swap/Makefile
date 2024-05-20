@@ -11,8 +11,12 @@
 # **************************************************************************** #
 NAME 		= push_swap
 
-SRC	=	src/push_swap.c		\
+SRC	=	src/push_swap.c			\
 		src/push_swap_utils.c	\
+		src/fonctions_push.c		\
+		src/fonctions_reverse.c	\
+		src/fonctions_rotate.c	\
+		src/fonctions_swap.c		\
 
 CC 		= gcc
 RM		= rm -f

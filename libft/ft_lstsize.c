@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 12:05:21 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:57:25 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/04/30 10:35:48 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/04/30 10:36:00 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-long	ft_atol(const char *str)
+int	ft_lstsize(t_list *lst)
 {
-	long	result;
-	int		sign;
-	int		i;
+	size_t	i;
 
-	result = 0;
-	sign = 1;
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+	while (lst)
 	{
-		sign = -1;
+		lst = lst->next;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+	return (i);
 }
+/*
+int     main(void)
+{
+	t_list  *lst;
+	t_list  *new_lst;
+	t_list  *new_lst2;
+
+	lst = ft_lstnew("first");
+	new_lst = ft_lstnew("second");
+	new_lst2 = ft_lstnew("third");
+	ft_lstadd_front(&lst, new_lst);
+	ft_lstadd_front(&lst, new_lst2);
+	printf("%d\n", ft_lstsize(lst));
+	return (0);
+}
+*/
