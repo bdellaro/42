@@ -6,10 +6,21 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:35 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/03 12:56:23 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:29:19 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
+
+void	ft_error_free(char *str, char **array)
+{
+	if (str != NULL)
+	{
+		ft_free_array(array);
+		ft_error(str);
+	}
+	ft_free_array(array);
+	exit (EXIT_FAILURE);
+}
 
 void	ft_exit(void)
 {
@@ -30,17 +41,6 @@ void	ft_error(char *str)
 	}
 	ft_putstr_fd("\n", 2);
 	exit (EXIT_FAILURE);
-}
-
-int	ft_free_array(char **array)
-{
-	int	i;
-
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free(array);
-	return (0);
 }
 
 char	*ft_get_envp(char *cmd, char **envp)

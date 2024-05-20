@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:55:38 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/04/30 16:58:57 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:05:43 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -16,7 +16,7 @@ int	ft_free_array(char **array)
 	int	i;
 
 	i = -1;
-	while (++i)
+	while (array[++i])
 		free(array[i]);
 	free(array);
 	return (0);

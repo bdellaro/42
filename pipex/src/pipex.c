@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/20 10:23:45 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:38:33 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
@@ -25,6 +25,8 @@ int	ft_execute_cmd(char *argv, char **envp)
 	char	*path;
 
 	cmd = ft_split(argv, ' ');
+	if (!cmd || !cmd[0])
+		ft_error_free(NULL, cmd);
 	if (cmd[0][0] == '/')
 		path = cmd[0];
 	else
@@ -38,10 +40,7 @@ int	ft_execute_cmd(char *argv, char **envp)
 		exit (EXIT_FAILURE);
 	}
 	if (execve(path, cmd, envp) == -1)
-	{
-		ft_free_array(cmd);
-		ft_error("Cannot launch command");
-	}
+		ft_error_free("Cannot launch command", cmd);
 	ft_free_array(cmd);
 	return (0);
 }
@@ -84,7 +83,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 5)
 	{
 		if (argv[2][0] == 0 || argv[3][0] == 0)
-			ft_error("Invalid command");
+			ft_putstr_fd("Invalid command\n", 2);
 		if (pipe(pipe_fd) == -1)
 			ft_error("Cannot open file descriptor");
 		pid[0] = fork();
