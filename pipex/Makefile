@@ -6,7 +6,7 @@
 #    By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/25 14:15:06 by bdellaro          #+#    #+#              #
-#    Updated: 2024/03/05 16:48:08 by bdellaro         ###   ########.fr        #
+#    Updated: 2024/05/20 09:58:00 by bdellaro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME 		= pipex
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
-	-cd libft;make clean
+	cd libft;make clean
 	@echo "\033[1;32m[CLEAN OK]\033[0m"
 
 fclean: clean
