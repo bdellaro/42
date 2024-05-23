@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 #include "../include/pipex.h"
 
-//valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes ./pipex asdsad 'lol' 'c' outfile
-
-
 void	ft_wait_close(int *pipe_fd, int *pid)
 {
 	close(pipe_fd[0]);
@@ -58,17 +55,13 @@ int	ft_command_two(char **argv, char **envp, int *pipe_fd)
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
 	{
-//		ft_wait_close(pipe_fd, NULL);
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
+		ft_wait_close(pipe_fd, NULL);
 		ft_error("Cannot open outfile");
 	}
 	dup2(pipe_fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
-//	ft_wait_close(pipe_fd, NULL);
+	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[3], envp);
 	exit (0);
 }
@@ -80,17 +73,13 @@ int	ft_command_one(char **argv, char **envp, int *pipe_fd)
 	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
 	{
-//		ft_wait_close(pipe_fd, NULL);
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
+		ft_wait_close(pipe_fd, NULL);
 		ft_error("Cannot open infile");
 	}
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
 	close(infile);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
-//	ft_wait_close(pipe_fd, NULL);
+	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[2], envp);
 	exit (0);
 }
