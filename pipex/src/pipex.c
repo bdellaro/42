@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/23 14:27:14 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:39:25 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
@@ -58,13 +58,17 @@ int	ft_command_two(char **argv, char **envp, int *pipe_fd)
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
 	{
-		ft_wait_close(pipe_fd, NULL);
+//		ft_wait_close(pipe_fd, NULL);
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
 		ft_error("Cannot open outfile");
 	}
 	dup2(pipe_fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
-	ft_wait_close(pipe_fd, NULL);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+//	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[3], envp);
 	exit (0);
 }
@@ -76,13 +80,17 @@ int	ft_command_one(char **argv, char **envp, int *pipe_fd)
 	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
 	{
-		ft_wait_close(pipe_fd, NULL);
+//		ft_wait_close(pipe_fd, NULL);
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
 		ft_error("Cannot open infile");
 	}
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
 	close(infile);
-	ft_wait_close(pipe_fd, NULL);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+//	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[2], envp);
 	exit (0);
 }
