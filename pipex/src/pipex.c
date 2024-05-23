@@ -6,17 +6,23 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:18 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/20 13:38:33 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:27:14 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/pipex.h"
 
-void	ft_wait_and_close(int *pipe_fd, int *pid)
+//valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes ./pipex asdsad 'lol' 'c' outfile
+
+
+void	ft_wait_close(int *pipe_fd, int *pid)
 {
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
-	waitpid(pid[0], NULL, 0);
-	waitpid(pid[1], NULL, 0);
+	if (pid)
+	{
+		waitpid(pid[0], NULL, 0);
+		waitpid(pid[1], NULL, 0);
+	}
 }
 
 int	ft_execute_cmd(char *argv, char **envp)
@@ -51,12 +57,16 @@ int	ft_command_two(char **argv, char **envp, int *pipe_fd)
 
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
+	{
+		ft_wait_close(pipe_fd, NULL);
 		ft_error("Cannot open outfile");
+	}
 	dup2(pipe_fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
-	close(pipe_fd[1]);
+	close(outfile);
+	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[3], envp);
-	return (0);
+	exit (0);
 }
 
 int	ft_command_one(char **argv, char **envp, int *pipe_fd)
@@ -66,13 +76,15 @@ int	ft_command_one(char **argv, char **envp, int *pipe_fd)
 	infile = open(argv[1], O_RDONLY, 0777);
 	if (infile == -1)
 	{
+		ft_wait_close(pipe_fd, NULL);
 		ft_error("Cannot open infile");
 	}
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	dup2(infile, STDIN_FILENO);
-	close(pipe_fd[0]);
+	close(infile);
+	ft_wait_close(pipe_fd, NULL);
 	ft_execute_cmd(argv[2], envp);
-	return (0);
+	exit (0);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -96,7 +108,7 @@ int	main(int argc, char **argv, char **envp)
 			ft_error("Unable to fork the second command");
 		if (pid[1] == 0)
 			ft_command_two(argv, envp, pipe_fd);
-		ft_wait_and_close(pipe_fd, pid);
+		ft_wait_close(pipe_fd, pid);
 	}
 	else
 		ft_exit();
