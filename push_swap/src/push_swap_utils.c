@@ -10,3 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
+
+void	ft_check_argc(int argc, char **argv, char ***args)
+{
+	if (argc == 2)
+		*args = ft_split(argv[1], ' ');
+	else
+		*args = argv + 1;
+}

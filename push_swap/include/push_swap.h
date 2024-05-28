@@ -67,5 +67,6 @@ int		ft_parse_args(int argc, char **argv, t_stacks *stacks, char ***args);
 int		ft_is_number(char *str);
 int		ft_free_all(t_stacks *stacks, char **args, int argc, int error);
 int		ft_check_duplicate(t_stacks *stacks);
+void	ft_check_argc(int argc, char **argv, char ***args);
 
 #endif

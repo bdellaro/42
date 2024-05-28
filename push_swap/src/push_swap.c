@@ -78,15 +78,12 @@ int	ft_parse_args(int argc, char **argv, t_stacks *stacks, char ***args)
 	int		i;
 	long	*value;
 
-	if (argc == 2)
-		*args = ft_split(argv[1], ' ');
-	else
-		*args = argv + 1;
-	i = 0;
-	while ((*args)[i])
+	ft_check_argc(argc, argv, args);
+	i = -1;
+	while ((*args)[++i])
 	{
 		if (!ft_is_number((*args)[i]))
-		{	
+		{
 			ft_putstr_fd("Error\nArgument is not a number\n", 2);
 			return (0);
 		}
@@ -101,7 +98,6 @@ int	ft_parse_args(int argc, char **argv, t_stacks *stacks, char ***args)
 			return (0);
 		}
 		ft_lstadd_back(&(stacks->a), ft_lstnew(value));
-		i++;
 	}
 	return (1);
 }
