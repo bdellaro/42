@@ -22,6 +22,7 @@ typedef struct s_list
 	int				index;
 	int				push_cost;
 	struct s_list	*target_node;
+	struct s_list	*prev;
 	struct s_list	*next;
 	bool			above_median;
 	bool			cheapest;

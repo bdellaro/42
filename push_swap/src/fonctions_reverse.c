@@ -31,21 +31,21 @@ void	ft_reverse_rotate(t_list **stack)
 	*stack = last;
 }
 
-void	ft_rra(t_stack *stack)
+void	ft_rra(t_stacks *stacks)
 {
-	ft_reverse_rotate(&stack->a);
+	ft_reverse_rotate(&(stacks->a));
 	ft_printf("rra\n");
 }
 
-void	ft_rrb(t_stack *stack)
+void	ft_rrb(t_stacks *stacks)
 {
-	ft_reverse_rotate(&stack->b);
+	ft_reverse_rotate(&(stacks->b));
 	ft_printf("rrb\n");
 }
 
-void	ft_rrr(t_stack *stack)
+void	ft_rrr(t_stacks *stacks)
 {
-	ft_reverse_rotate(&stack->a);
-	ft_reverse_rotate(&stack->b);
+	ft_reverse_rotate(&(stacks->a));
+	ft_reverse_rotate(&(stacks->b));
 	ft_printf("rrr\n");
 }

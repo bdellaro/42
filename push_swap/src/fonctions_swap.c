@@ -24,21 +24,21 @@ void	ft_swap(t_list **stack)
 	}
 }
 
-void	ft_sa(t_stack *stack)
+void	ft_sa(t_stacks *stacks)
 {
-	ft_swap(&stack->a);
+	ft_swap(&stacks->a);
 	ft_printf("sa\n");
 }
 
-void	ft_sb(t_stack *stack)
+void	ft_sb(t_stacks *stacks)
 {
-	ft_swap(&stack->b);
+	ft_swap(&stacks->b);
 	ft_printf("sb\n");
 }
 
-void	ft_ss(t_stack *stack)
+void	ft_ss(t_stacks *stacks)
 {
-	ft_swap(&stack->a);
-	ft_swap(&stack->b);
+	ft_swap(&stacks->a);
+	ft_swap(&stacks->b);
 	ft_printf("ss\n");
 }

@@ -57,6 +57,7 @@ SRC =		ft_atoi.c	\
 		ft_lstsize.c		\
 		ft_free_array.c		\
 		ft_utils.c		\
+		ft_atol.c		\
 		ft_printf/ft_print_char.c	\
 		ft_printf/ft_printf.c		\
 		ft_printf/ft_print_hexa.c	\

@@ -24,14 +24,14 @@ void	ft_push(t_list **src, t_list **dest)
 	}
 }
 
-void	ft_pa(t_stack *stack)
+void	ft_pa(t_stacks *stacks)
 {
-	ft_push(&stack->b, &stack->a);
+	ft_push(&stacks->b, &stacks->a);
 	ft_printf("pa\n");
 }
 
-void	ft_pb(t_stack *stack)
+void	ft_pb(t_stacks *stacks)
 {
-	ft_push(&stack->a, &stack->b);
+	ft_push(&stacks->a, &stacks->b);
 	ft_printf("pb\n");
 }

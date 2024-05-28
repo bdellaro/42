@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_big_sort.c                                      :+:      :+:    :+:   */
+/*   sort_big.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 15:15:25 by ayarmaya          #+#    #+#             */
-/*   Updated: 2024/05/28 10:22:46 by bdellaro         ###   ########.fr       */
+/*   Created: 2024/05/28 10:53:51 by bdellaro          #+#    #+#             */
+/*   Updated: 2024/05/28 10:53:52 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../include/push_swap.h"
 
-#include "push_swap.h"
-
-t_list	*find_min(t_list *stack)
+t_list	*ft_find_min(t_list *stack)
 {
 	t_list	*min;
 	t_list	*current;
@@ -30,33 +29,33 @@ t_list	*find_min(t_list *stack)
 	return (min);
 }
 
-void	min_on_top(t_stacks *stacks, t_list **a)
+void	ft_min_on_top(t_stacks *stacks, t_list **a)
 {
 	t_list	*min_node;
 
-	min_node = find_min(*a);
+	min_node = ft_find_min(*a);
 	while (*a != min_node)
 	{
 		if (min_node->above_median)
-			ra(stacks);
+			ft_ra(stacks);
 		else
-			rra(stacks);
+			ft_rra(stacks);
 	}
 }
 
-void	big_sort(t_stacks *stacks)
+void	ft_big_sort(t_stacks *stacks)
 {
 	int		len_a;
 
-	len_a = count_elements(stacks->a);
-	pb(stacks);
+	len_a = ft_count_elements(stacks->a);
+	ft_pb(stacks);
 	while (--len_a)
 	{
-		init_nodes(stacks);
-		move_a_to_b(stacks);
+		ft_init_nodes(stacks);
+		ft_move_a_to_b(stacks);
 	}
 	while (stacks->b)
-		pa(stacks);
-	set_index_median(stacks->a);
-	min_on_top(stacks, &stacks->a);
+		ft_pa(stacks);
+	ft_set_index_median(stacks->a);
+	ft_min_on_top(stacks, &stacks->a);
 }

@@ -28,21 +28,21 @@ void	ft_rotate(t_list **stack)
 	}
 }
 
-void	ft_ra(t_stack *stack)
+void	ft_ra(t_stacks *stacks)
 {
-	ft_rotate(&stack->a);
+	ft_rotate(&stacks->a);
 	ft_printf("ra\n");
 }
 
-void	ft_rb(t_stack *stack)
+void	ft_rb(t_stacks *stacks)
 {
-	ft_rotate(&stack->b);
+	ft_rotate(&stacks->b);
 	ft_printf("rb\n");
 }
 
-void	ft_rr(t_stack *stack)
+void	ft_rr(t_stacks *stacks)
 {
-	ft_rotate(&stack->a);
-	ft_rotate(&stack->b);
+	ft_rotate(&stacks->a);
+	ft_rotate(&stacks->b);
 	ft_printf("rr\n");
 }
