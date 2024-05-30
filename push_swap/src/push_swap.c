@@ -6,7 +6,7 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 09:41:56 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/20 15:40:21 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:06:20 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
@@ -23,12 +23,12 @@ int	ft_check_duplicate(t_stacks *stacks)
 		while (compare != NULL)
 		{
 			if (*(int *)current->content == *(int *)compare->content)
-				return (0);
+				return (1);
 			compare = compare->next;
 		}
 		current = current->next;
 	}
-	return (1);
+	return (0);
 }
 
 int	ft_free_all(t_stacks *stacks, char **args, int argc, int error)
@@ -63,14 +63,14 @@ int	ft_is_number(char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (!str[i])
-		return (0);
+		return (1);
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
-			return (0);
+		if (ft_isdigit(str[i]))
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int	ft_parse_args(int argc, char **argv, t_stacks *stacks, char ***args)
@@ -85,21 +85,21 @@ int	ft_parse_args(int argc, char **argv, t_stacks *stacks, char ***args)
 		if (!ft_is_number((*args)[i]))
 		{
 			ft_putstr_fd("Error\nArgument is not a number\n", 2);
-			return (0);
+			return (1);
 		}
 		value = malloc(sizeof(long));
 		if (!value)
-			return (0);
+			return (1);
 		*value = ft_atol((*args)[i]);
 		if (*value > INT_MAX || *value < INT_MIN)
 		{
 			free(value);
 			ft_putstr_fd("Error\nExceed integer value\n", 2);
-			return (0);
+			return (1);
 		}
 		ft_lstadd_back(&(stacks->a), ft_lstnew(value));
 	}
-	return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -112,12 +112,12 @@ int	main(int argc, char **argv)
 	stacks.a = NULL;
 	stacks.b = NULL;
 	args = NULL;
-	if (!ft_parse_args(argc, argv, &stacks, &args))
+	if (ft_parse_args(argc, argv, &stacks, &args))
 	{
 		ft_free_all(&stacks, args, argc, 0);
 		return (1);
 	}
-	if (!ft_check_duplicate(&stacks))
+	if (ft_check_duplicate(&stacks))
 	{
 		ft_free_all(&stacks, args, argc, 1);
 		ft_putstr_fd("Duplicated number found\n", 2);

@@ -6,28 +6,10 @@
 /*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:53:51 by bdellaro          #+#    #+#             */
-/*   Updated: 2024/05/28 10:53:52 by bdellaro         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:33:28 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../include/push_swap.h"
-
-t_list	*ft_find_min(t_list *stack)
-{
-	t_list	*min;
-	t_list	*current;
-
-	if (!stack)
-		return (NULL);
-	min = stack;
-	current = stack->next;
-	while (current)
-	{
-		if (*((int *)current->content) < *((int *)min->content))
-			min = current;
-		current = current->next;
-	}
-	return (min);
-}
 
 void	ft_min_on_top(t_stacks *stacks, t_list **a)
 {
