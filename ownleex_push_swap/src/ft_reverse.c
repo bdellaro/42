@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_reverse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarmaya <ayarmaya@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: bdellaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:33:00 by ayarmaya          #+#    #+#             */
-/*   Updated: 2024/03/29 14:35:45 by ayarmaya         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:07:09 by bdellaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	reverse_rotate(t_list **stack)
 
 void	rra(t_stacks *stacks)
 {
-	reverse_rotate(&(stacks->a));
+	(&(stacks->a)reverse_rotate);
 	ft_printf("rra\n");
 }
 
