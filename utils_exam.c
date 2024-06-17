@@ -11,6 +11,28 @@ void	ft_putnbr(int nbr)
 
 //atoi
 
+int ft_atoi(const char *str)
+{
+    int nbr = 0;
+    int sign = 1;
+
+    while (*str == ' ')
+        str++;
+    if (*str == '-')
+    {
+        sign = -1;
+        str++;
+    }
+    else if (*str == '+')
+        str++;
+    while (*str && (*str >= '0' && *str <= '9'))
+    {
+        nbr = nbr * 10 + (*str - '0');
+        str++;
+    }
+    return (sign * nbr);
+}
+
 int	ft_atoi(char *str)
 {
 	int	nbr 
@@ -58,6 +80,39 @@ int	ft_atoi_base(const char *str, int str_base)
 	while (ft_isvalid(*str, str_base))
 		result = result * str_base + ft_value_of(*str++);
 	return (result * sign);
+}
+
+//atoi_base_2
+
+int	ft_atoi_base(const char str, int str_base)
+{
+	int	idx;
+	int	sign;
+	int result;
+
+	idx = 0;
+    sign = 1;
+    result = 0;
+
+    if (str[idx] == '-')
+    {
+        sign = -1;
+        idx++;
+    }
+    while (str[idx] != '\0')
+    {
+        result = str_base;
+        if (str[idx] >= '0' && str[idx] <= '9')
+            result += str[idx] - '0';
+        else if (str[idx] >= 'A' && str[idx] <= 'F')
+            result += str[idx] - 'A' + 10;
+        else if (str[idx] >= 'a' && str[idx] <= 'f')
+            result += str[idx] - 'a' + 10;
+		else
+			return (0);
+		idx++;
+    }
+    return (result * sign);
 }
 
 //is_prime
